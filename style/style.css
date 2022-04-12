@@ -6,6 +6,9 @@
 /*TEXT FORMAT*/
 @import './textFormat.css';
 
+/* SECTION FORMAT */
+@import './section_style.css';
+
 body,
 * {
     margin: 0;
@@ -24,10 +27,7 @@ body,
     background-color: bisque;
 }
 
-section{
-    max-width: 1216px;
-    border: 2px solid purple;
-}
+
 
 .header {
     background-color: brown;
@@ -35,14 +35,10 @@ section{
     width: 100%;
 }
 
-.product-page {
-    height:auto;
-    background-color: lightblue;
-    display: flex;
-    flex-direction: row;
-    margin-left: 18px;
-    margin-right: 18px;
-}
+/* .product-page {
+
+} */
+
 
 .footer {
     background-color: brown;
@@ -133,3 +129,19 @@ section{
 }
 
 }
+/* PROFILE SECTION STARTS HERE */
+.input {
+    display:flex;
+  
+  }
+  .input-required{
+    display:flex;
+    border-color: red;
+  }
+  .input-correct{
+    display:flex;
+    border-color: rgb(17, 243, 17);
+  }
+  .input-error{
+    display: none;
+  }
