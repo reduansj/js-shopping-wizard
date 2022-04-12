@@ -54,6 +54,7 @@ body,
     width: 70%;
     position: sticky;
     top: 10px;
+    display: none;
 }
 
 .productViewMiniaturesContainer {

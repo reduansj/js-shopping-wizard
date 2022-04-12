@@ -8,7 +8,8 @@ const productDescription = document.getElementById("productDescription")
 const nextSectionBtn = document.getElementById('next');
 const clearInput = document.getElementById('clearForm');
 const profileInputs = document.querySelectorAll('#profile input');
-const activeSection=document.querySelector('showSection');
+const activeSection=document.querySelector('.showSection');
+const buyBtn=document.getElementById('productBuy');
 
 //Product Data Information
 const productData = {
@@ -106,10 +107,13 @@ document.getElementById("productColorSelectorContainer").addEventListener('click
 })
 //Declare events
 clearInput.addEventListener("click", clearInputs);
-nextSectionBtn.addEventListener("click", nextSection);
+// nextSectionBtn.addEventListener("click", nextSection);
+
 profileInputs.forEach((input) => {
-  input.addEventListener('input', updateProfile);
+  input.addEventListener('input', updateInputs);
 });
+
+buyBtn.addEventListener('click', nextSection );
 //
 
 //Hovers last mouseover image and change the src of mainProductImage
@@ -213,10 +217,11 @@ function updateInputs(e) {
   
   function nextSection() {
 
-    activeSection.classList.replace(showSection, hideSection);
-    activeSection.nextElementSibling.classList.replace(hideSection, showSection);
+    activeSection.classList.replace('showSection', 'hideSection');
+    activeSection.nextElementSibling.classList.replace('hideSection', 'showSection');
     
-    
+    console.log(activeSection);
       // Object.values(inputStatus[activeSection.id]).every(e=> e === true);
     
     }
+    console.log(buyBtn);
