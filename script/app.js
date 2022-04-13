@@ -72,9 +72,9 @@ const productData = {
 const inputStatus = {
 
   product: {
-    userName: false,
-    password: false,
-    email: true,
+    color: 'black',
+    size: 37,
+    price: '45.99€',
   },
   profile: {
     userName: false,
@@ -97,6 +97,8 @@ const inputStatus = {
     giftSrc: '',
   }
 }
+
+//EVENT LISTENERS DECLARATION
 
 //Declaration event only for the parent
 document.getElementById("productViewMiniaturesContainer").addEventListener('mouseover', e => {
@@ -240,7 +242,8 @@ function nextSection() {
     activeSection.nextElementSibling.classList.toggle('hideSection');
     activeSection.removeAttribute('activeSection')
     activeSection.nextElementSibling.setAttribute('activeSection', '')
-    //activeSection.nextElementSibling.classList.toggle('showSection');
+    console.log("El producto escogido es: ", inputStatus.product)
+
   }
 
 }
