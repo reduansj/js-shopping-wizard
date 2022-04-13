@@ -135,13 +135,15 @@ body,
     display:flex;
   
   }
-  .input-required{
+  .requiredInput{
     display:flex;
     border-color: red;
+    background-color: rgba(255, 17, 0, 0.377);
   }
-  .input-correct{
+  .correctInput{
     display:flex;
     border-color: rgb(17, 243, 17);
+    background-color: rgba(149, 247, 2, 0.39);
   }
   .input-error{
     display: none;

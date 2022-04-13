@@ -8,7 +8,7 @@ const productDescription = document.getElementById("productDescription")
 const nextSectionBtn = document.getElementById('next');
 const clearInput = document.getElementById('clearForm');
 const profileInputs = document.querySelectorAll('#profile input');
-const activeSection=document.querySelector('.showSection');
+let activeSection=document.querySelector('.showSection');
 const buyBtn=document.getElementById('productBuy');
 
 //Product Data Information
@@ -71,6 +71,12 @@ const productData = {
 }
 
 const inputStatus = {
+
+  product:{
+    userName: false,
+    password: false,
+    email: true,
+  },
     profile: {
         userName: false,
         password: false,
@@ -113,7 +119,8 @@ profileInputs.forEach((input) => {
   input.addEventListener('input', updateInputs);
 });
 
-buyBtn.addEventListener('click', nextSection );
+buyBtn.addEventListener('click', nextSection);
+nextSectionBtn.addEventListener('click', nextSection);
 //
 
 //Hovers last mouseover image and change the src of mainProductImage
@@ -154,43 +161,48 @@ function changeAllImagesPath(color, miniatureImages) {
 
 
 // Profile section
+
+const checkInputexpression = {
+  userName: /^[A-Z][A-Za-z0-9_]{4,20}$/,
+  password: /^.{4,12}$/,
+  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-z]+$/,
+}
+
+
 function updateInputs(e) {
     switch (e.target.id) {
       case 'userName':
-        validateValue(checkInputexpression.userName, e.target)
+        validateInput(checkInputexpression.userName, e.target)
         break;
       case 'email':
-        validateValue(checkInputexpression.email, e.target)
+        validateInput(checkInputexpression.email, e.target)
         break;
       case 'password':
-        validateValue(checkInputexpression.password, e.target);
-        matchPassword()
+        validateInput(checkInputexpression.password, e.target);
+        matchPassword(e.target)
         break;
-      case 'confirm-password':
-        matchPassword()
+      case 'confirmPassword':
+        matchPassword(e.target)
         break;
   
     }
-  
-  
   }
   
-  function validateInput(regex, input) {
-    if (regex.test(input.value)) {
+  function validateInput(exp, input) {
+    if (exp.test(input.value)) {
       document.getElementById(`${input.id}`).classList.add("correctInput");
       document.getElementById(`${input.id}`).classList.remove("requiredInput");
       inputStatus[input.id] = true;
-    } else if (!regex.test(input.value)) {
+    } else if (!exp.test(input.value)) {
       document.getElementById(`${input.id}`).classList.remove("correctInput");
       document.getElementById(`${input.id}`).classList.add("requiredInput");
       inputStatus[input.id] = false;
     }
   }
   
-  function matchPassword() {
+  function matchPassword(input) {
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
-  
     if (!confirmPassword.value.length == 0) {
   
       if (password.value !== confirmPassword.value) {
@@ -214,14 +226,29 @@ function updateInputs(e) {
     });
   
   }
-  
-  function nextSection() {
 
-    activeSection.classList.replace('showSection', 'hideSection');
-    activeSection.nextElementSibling.classList.replace('hideSection', 'showSection');
+  console.log(activeSection.id);
+  console.log(activeSection.classList);
+  console.log( activeSection.nextElementSibling.id);
+
+  function nextSection() {
+    let activeSection=document.querySelector('.showSection');
+    const addressSection=document.getElementById('address');
+    const profileSection=document.getElementById('profile');
+
+  
     
-    console.log(activeSection);
-      // Object.values(inputStatus[activeSection.id]).every(e=> e === true);
+    if(activeSection.id==addressSection.id || activeSection.id==profileSection.id){
+      if( Object.values(inputStatus[activeSection.id]).every(e=> e === true)){
+        activeSection.classList.replace('showSection', 'hideSection');
+        activeSection.nextElementSibling.classList.replace('hideSection', 'showSection');
+      }
+    }else{
+      activeSection.classList.replace('showSection', 'hideSection');
+      activeSection.nextElementSibling.classList.toggle('hideSection');
+      activeSection.nextElementSibling.classList.toggle('showSection');
+
+    }
     
     }
-    console.log(buyBtn);
+ 

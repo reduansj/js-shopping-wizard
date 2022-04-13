@@ -13,7 +13,7 @@
 <body>
     <main class="main-container">
         <nav class="header">Header</nav>
-        <section id="product" class="product-page showSection">
+        <section id="product" class="section showSection">
             <div class="productImagesContainer">
                 <div miniatureProductImage class="productViewMiniaturesContainer" id="productViewMiniaturesContainer">
                     <img default src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="miniatureMain"
@@ -84,11 +84,11 @@
                         <img class="productColorSelectorImage " src="./assets/Products/GM500-true/GM500-true-main.jpg"
                             alt="GM500 True" color="true">
                     </div>
-                    <button id="productBuy" class="productBuy" >Buy</button>
+                    <button id="productBuy" class="productBuy">Buy</button>
             </div>
         </section>
 
-        <section id="profile" class="form-pages hideSection">
+        <section id="profile" class="profile section form-pages hideSection">
 
             <h2>Profile</h2>
             <form action="" id="profile" class="profile-form">
@@ -109,22 +109,49 @@
                 </div>
 
                 <div id="input_password2">
-                    <label for="confirm-password" class="label"></label>Confirm password:</label>
-                    <input type="password" id="confirm-password" name="confirm-password" class="input">
+                    <label for="confirmPassword" class="label"></label>Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="input">
                     <p class="input-error">The current value is not correct.</p><br>
                 </div>
 
             </form>
             <footer class="btn-container">
-                <button id="clearForm" class="submitBtn">Clear Form</button>
-                <button id="next" class="submitBtn">Next</button>
+ 
             </footer>
         </section>
 
-        <!-- <section class="address-page"></section>
-        <section class="shipping-page"></section>
-        <section class="finish-page"></section> -->
-        <footer class="footer">Footer</footer>
+        <section id="address" class=" addresssection form-pages hideSection">
+            <section id="address-page" class="address-page">
+                <h2>Address</h2>
+                <form action="" id="address" class="adress-form">
+                    <label for="" class="label">First name:</label>
+                    <input type="text" class="input">
+                    <label for="" class="label">Last name:</label>
+                    <input type="text" class="input">
+                    <label for="" class="label">Birthday:</label>
+                    <input type="date" class="input">
+                    <label for="" class="label">Address1:</label>
+                    <input type="text" class="input">
+                    <label for="" class="label">Address2:</label>
+                    <input type="text" class="input">
+                    <label for="" class="label">Country:</label>
+                    <input type="text" class="input">
+                    <label for="" class="label">Phone</label>
+                    <input type="" class="input">
+                </form>
+            </section>
+
+
+        </section>
+        <section id="shipping" class="section hideSection"></section>
+        <section id="finish" class="section hideSection"></section>
+        <footer class="footer">
+   <div>
+    <button id="clearForm" class="submitBtn">Clear Form</button>
+    <button id="next" class="submitBtn">Next</button>
+   </div>
+
+        </footer>
 
     </main>
 </body>
