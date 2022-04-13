@@ -13,10 +13,6 @@ section{
     flex-direction: column;
 }
 
-
 .hideSection{
     display:none;
-}
-.showSection{
-    display: block;
 }

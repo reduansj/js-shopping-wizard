@@ -53,8 +53,7 @@ body,
     height: max-content;
     width: 70%;
     position: sticky;
-    top: 10px;
-    display: none;
+    top: 0;
 }
 
 .productViewMiniaturesContainer {

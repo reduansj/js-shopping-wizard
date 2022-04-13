@@ -189,11 +189,11 @@ function validateInput(exp, input) {
   if (exp.test(input.value)) {
     document.getElementById(`${input.id}`).classList.add("correctInput");
     document.getElementById(`${input.id}`).classList.remove("requiredInput");
-    inputStatus[input.parentNode.parentNode.id][input.id] = true;
+    inputStatus[input.parentElement.parentElement.id][input.id] = true;
   } else if (!exp.test(input.value)) {
     document.getElementById(`${input.id}`).classList.remove("correctInput");
     document.getElementById(`${input.id}`).classList.add("requiredInput");
-    inputStatus[input.parentNode.parentNode.id][input.id] = false;
+    inputStatus[input.parentElement.parentElement.id][input.id] = false;
   }
 }
 
@@ -204,11 +204,11 @@ function matchPassword(input) {
     if (password.value !== confirmPassword.value) {
       confirmPassword.classList.remove("correctInput");
       confirmPassword.classList.add("requiredInput");
-      inputStatus[input.parentNode.parentNode.id][input.id] = false;
+      inputStatus[input.parentElement.parentElement.id][input.id] = false;
     } else {
       confirmPassword.classList.add("correctInput");
       confirmPassword.classList.remove("requiredInput");
-      inputStatus[input.parentNode.parentNode.id][input.id] = true;
+      inputStatus[input.parentElement.parentElement.id][input.id] = true;
     }
   }
 }
@@ -222,22 +222,25 @@ function clearInputs() {
 
 }
 
-
 function nextSection() {
   const addressSection = document.getElementById('address');
   const profileSection = document.getElementById('profile');
-  const activeSection = document.querySelector('.showSection');
+  const activeSection = document.querySelector('[activeSection]');
 
   if (activeSection.id == addressSection.id || activeSection.id == profileSection.id) {
     if (Object.values(inputStatus[activeSection.id]).every(e => e === true)) {
-      activeSection.classList.replace('showSection', 'hideSection');
-      activeSection.nextElementSibling.classList.replace('hideSection', 'showSection');
-    }
+      activeSection.classList.toggle('hideSection');
+      activeSection.nextElementSibling.classList.toggle('hideSection');
+      activeSection.removeAttribute('activeSection')
+      activeSection.nextElementSibling.setAttribute(['activeSection'], '')
+        }
+    
   } else {
-    activeSection.classList.replace('showSection', 'hideSection');
+    activeSection.classList.toggle('hideSection');
     activeSection.nextElementSibling.classList.toggle('hideSection');
-    activeSection.nextElementSibling.classList.toggle('showSection');
-
+    activeSection.removeAttribute('activeSection')
+    activeSection.nextElementSibling.setAttribute('activeSection', '')
+    //activeSection.nextElementSibling.classList.toggle('showSection');
   }
 
 }
