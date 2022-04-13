@@ -227,12 +227,9 @@ function updateInputs(e) {
   
   }
 
-  console.log(activeSection.id);
-  console.log(activeSection.classList);
-  console.log( activeSection.nextElementSibling.id);
+ 
 
   function nextSection() {
-    let activeSection=document.querySelector('.showSection');
     const addressSection=document.getElementById('address');
     const profileSection=document.getElementById('profile');
 
