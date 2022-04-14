@@ -32,7 +32,7 @@
                 <img class="mainProductImage" id="mainProductImage"
                     src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="Product Image">
             </div>
-            <!--Generic alt text name-->
+
             <div class="productInformationSelection">
                 <h1>New Balance</h1>
                 <h2 class="productDescription" id="productDescription">GM500 Black</h1>
@@ -41,7 +41,7 @@
                     <h3 class="productSizeContainer">Size</h3>
                     <form class="productSizeSelector">
                         <label for="productSize">Choose size:</label>
-                        <select name="cars" id="cars">
+                        <select name="productSize" id="productSize">
                             <option value="37">37</option>
                             <option value="38">38</option>
                             <option value="39">39</option>
@@ -116,9 +116,10 @@
 
             </form>
             <footer class="btn-container">
- 
+
             </footer>
         </section>
+
 
         <section id="address" class=" addresssection form-pages hideSection">
             <section id="address-page" class="address-page">
@@ -140,17 +141,46 @@
                     <input type="" class="input">
                 </form>
             </section>
-
-
         </section>
-        <section id="shipping" class="section hideSection"></section>
+
+        <section id="shipping-page" class="section">
+            <article>
+                <header>
+                    <h2>Shipping</h2>
+                </header>
+                <article>
+                    <h3>Shipping type</h3>
+                    <form action="" id="form__shipping" class="form__shipping">
+                        <input type="radio" id="option__free-shipping" name="shipping-type" value="free">
+                        <label for="option__free-shipping">Free (72h)</label><br>
+                        <input type="radio" id="option__extra-shipping" name="shipping-type" value="extra">
+                        <label for="option__extra-shipping">Extra (48h) <b>4.99€</b></label><br>
+                        <input type="radio" id="option__premium-shipping" name="shipping-type" value="premium">
+                        <label for="option_premium_shipping">Premium (24h) <b>9.99€</b></label>
+                    </form>
+                </article>
+                <article>
+                    <div class="container__delivery-date" id="container__delivery-date">
+                        <h3>Your order will arrive:</h3>
+                        <h4>ESTIMATE DELIVERY DATE:</h4>
+                        <p id="output__delivery-date"></p>
+                    </div>
+                </article>
+                <input type="checkbox" name="gift-check">
+                <label for="gift-check">Is it a gift?</label>
+                <p>Gift message</p>
+                <input id="input__gift-message" type="textarea" disabled>
+                <p>Gift wrapper image</p>
+                <input type="file" id="wrapper__gift-image" class="wrapper__gift-image">
+            </article>
+        </section>
+
         <section id="finish" class="section hideSection"></section>
         <footer class="footer">
-   <div>
-    <button id="clearForm" class="submitBtn">Clear Form</button>
-    <button id="next" class="submitBtn">Next</button>
-   </div>
-
+            <div>
+                <button id="clearForm" class="submitBtn">Clear Form</button>
+                <button id="next" class="submitBtn">Next</button>
+            </div>
         </footer>
 
     </main>

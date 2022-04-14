@@ -9,6 +9,10 @@ const nextSectionBtn = document.getElementById('next');
 const clearInput = document.getElementById('clearForm');
 const profileInputs = document.querySelectorAll('#profile input');
 const buyBtn = document.getElementById('productBuy');
+const productSizeInput = document.querySelector('select#productSize')
+const shippingInput = document.getElementById('form__shipping')
+const actualDate = new Date()
+const outputDeliveryDate = document.getElementById('output__delivery-date')
 
 //Product Data Information
 const productData = {
@@ -74,7 +78,7 @@ const inputStatus = {
   product: {
     color: 'black',
     size: 37,
-    price: '45.99€',
+    price: productData.black.price,
   },
   profile: {
     userName: false,
@@ -93,8 +97,24 @@ const inputStatus = {
   },
   shipping: {
     type: 'free',
-    giftMessage: '',
-    giftSrc: '',
+    giftMessage: null,
+    giftSrc: null,
+    deliveryDate : null ,
+  }
+}
+
+const shippingProp = {
+  free:{
+    time: 72,
+    cost: 0,
+  },
+  extra: {
+    time: 48,
+    cost: 4.99
+  },
+  premium: {
+    time: 24,
+    cost: 9.99,
   }
 }
 
@@ -122,7 +142,20 @@ profileInputs.forEach((input) => {
 
 buyBtn.addEventListener('click', nextSection);
 nextSectionBtn.addEventListener('click', nextSection);
+productSizeInput.addEventListener('change', e => inputStatus.product.size = e.target.value)
+shippingInput.addEventListener('change', e => {inputStatus.shipping.type = e.target.value; deliveryDateEstimation(e)})
 //
+
+function deliveryDateEstimation(e){
+  const shippingTime = shippingProp[e.target.value].time*3600*1000
+  const options = {year: 'numeric', month: 'long', day: 'numeric' }
+  if (actualDate.getHours()>=15){
+    shippingTime+=24*3600
+  }
+  const deliveryDate = new Date(actualDate.valueOf()+shippingTime).toLocaleDateString('en-EN', options)
+  inputStatus.shipping.deliveryDate = deliveryDate
+  outputDeliveryDate.innerHTML = `${deliveryDate} between 9:00h-15:00h`
+}
 
 //Hovers last mouseover image and change the src of mainProductImage
 function miniatureProductImageHover(e) {
@@ -138,12 +171,18 @@ function miniatureProductImageHover(e) {
 
 function colorProductImageClick(e) {
   if (e.target.src != mainProductImage.src) {
-    changeAllImagesPath(e.target.getAttribute('color'), productViewMiniaturesContainer.children)
+
+    const color = e.target.getAttribute('color')
+    const price = productData[color].price
+
+    changeAllImagesPath(color, productViewMiniaturesContainer.children)
     colorActiveImage.classList.replace('productColorSelectorImageSelected', 'productColorSelectorImage')
     e.target.classList.replace('productColorSelectorImage', 'productColorSelectorImageSelected')
     colorActiveImage = e.target
-    productPrice.textContent = productData[e.target.getAttribute('color')]['price']
-    productDescription.textContent = `${productDescription.textContent.split(" ")[0]} ${productData[e.target.getAttribute('color')]['text']}`
+    productPrice.textContent = price
+    productDescription.textContent = `${productDescription.textContent.split(" ")[0]} ${productData[color]['text']}`
+    inputStatus.product.color = color
+    inputStatus.product.price = price
   }
 }
 
@@ -242,7 +281,6 @@ function nextSection() {
     activeSection.nextElementSibling.classList.toggle('hideSection');
     activeSection.removeAttribute('activeSection')
     activeSection.nextElementSibling.setAttribute('activeSection', '')
-    console.log("El producto escogido es: ", inputStatus.product)
 
   }
 
