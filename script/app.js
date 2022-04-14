@@ -7,12 +7,14 @@ const productPrice = document.getElementById('productPrice')
 const productDescription = document.getElementById("productDescription")
 const nextSectionBtn = document.getElementById('next');
 const clearInput = document.getElementById('clearForm');
-const profileInputs = document.querySelectorAll('#profile input');
+const profileInputs = document.querySelectorAll('#profile-page input');
 const buyBtn = document.getElementById('productBuy');
 const productSizeInput = document.querySelector('select#productSize')
-const shippingInput = document.getElementById('form__shipping')
+const shippingInput = document.getElementById('shipping')
 const actualDate = new Date()
 const outputDeliveryDate = document.getElementById('output__delivery-date')
+const checkboxGiftMessage = document.querySelector("input[name='gift-check']")
+let inputGiftMessage = document.getElementById('input__gift-message')
 
 //Product Data Information
 const productData = {
@@ -75,18 +77,18 @@ const productData = {
 
 const inputStatus = {
 
-  product: {
-    color: 'black',
-    size: 37,
-    price: productData.black.price,
+  'product-page': {
+    color: true,
+    size: true,
+    price: true,
   },
-  profile: {
+  'profile-page': {
     userName: false,
     email: false,
     password: false,
     confirmPassword: false,
   },
-  address: {
+  'address-page': {
     firstName: false,
     lastName: false,
     birthday: false,
@@ -95,16 +97,16 @@ const inputStatus = {
     country: false,
     phone: false,
   },
-  shipping: {
-    type: 'free',
-    giftMessage: null,
-    giftSrc: null,
-    deliveryDate : null ,
+  'shipping-page': {
+    type: false,
+  },
+  'finish-page': {
+    termsConditions: false,
   }
 }
 
 const shippingProp = {
-  free:{
+  free: {
     time: 72,
     cost: 0,
   },
@@ -116,6 +118,16 @@ const shippingProp = {
     time: 24,
     cost: 9.99,
   }
+}
+
+const purchaseSummary = {
+  color: null,
+  size: null,
+  price: null,
+  shipping: null,
+  deliveryDate: null,
+  giftMessage: null,
+  giftSrc: null,
 }
 
 //EVENT LISTENERS DECLARATION
@@ -142,29 +154,35 @@ profileInputs.forEach((input) => {
 
 buyBtn.addEventListener('click', nextSection);
 nextSectionBtn.addEventListener('click', nextSection);
-productSizeInput.addEventListener('change', e => inputStatus.product.size = e.target.value)
-shippingInput.addEventListener('change', e => {inputStatus.shipping.type = e.target.value; deliveryDateEstimation(e)})
+productSizeInput.addEventListener('change', e => purchaseSummary.size = e.target.value)
+shippingInput.addEventListener('change', e => {
+  purchaseSummary.shipping = e.target.value;
+  deliveryDateEstimation(e)
+})
+checkboxGiftMessage.addEventListener('click', () => inputGiftMessage.disabled = !inputGiftMessage.disabled)
 //
 
-function deliveryDateEstimation(e){
-  const shippingTime = shippingProp[e.target.value].time*3600*1000
-  const options = {year: 'numeric', month: 'long', day: 'numeric' }
-  if (actualDate.getHours()>=15){
-    shippingTime+=24*3600
+function deliveryDateEstimation(e) {
+  const shippingTime = shippingProp[e.target.value].time * 3600 * 1000
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   }
-  const deliveryDate = new Date(actualDate.valueOf()+shippingTime).toLocaleDateString('en-EN', options)
-  inputStatus.shipping.deliveryDate = deliveryDate
-  outputDeliveryDate.innerHTML = `${deliveryDate} between 9:00h-15:00h`
+  if (actualDate.getHours() >= 15) {
+    shippingTime += 24 * 3600
+  }
+  const deliveryDate = new Date(actualDate.valueOf() + shippingTime).toLocaleDateString('en-EN', options)
+  purchaseSummary.deliveryDate = deliveryDate
+  outputDeliveryDate.innerHTML = `${deliveryDate} between <b>9:00h-15:00h</b>`
 }
 
 //Hovers last mouseover image and change the src of mainProductImage
 function miniatureProductImageHover(e) {
   if (e.target.src != mainProductImage.src) {
-    //Changes miniatureDefault selection
     miniatureActiveImage.classList.replace('miniatureProductImageSelected', 'miniatureProductImage')
     e.target.classList.replace('miniatureProductImage', 'miniatureProductImageSelected')
     miniatureActiveImage = e.target
-    //change mainProductImage
     mainProductImage.src = e.target.src
   }
 }
@@ -181,8 +199,8 @@ function colorProductImageClick(e) {
     colorActiveImage = e.target
     productPrice.textContent = price
     productDescription.textContent = `${productDescription.textContent.split(" ")[0]} ${productData[color]['text']}`
-    inputStatus.product.color = color
-    inputStatus.product.price = price
+    purchaseSummary.color = color
+    purchaseSummary.price = price
   }
 }
 
@@ -226,18 +244,23 @@ function updateInputs(e) {
   }
 }
 
+//Verifies if input is OK
 function validateInput(exp, input) {
-  if (exp.test(input.value)) {
+  const validation = exp.test(input.value)
+  if (validation) {
     document.getElementById(`${input.id}`).classList.add("correctInput");
     document.getElementById(`${input.id}`).classList.remove("requiredInput");
-    inputStatus[input.parentElement.parentElement.id][input.id] = true;
-  } else if (!exp.test(input.value)) {
+    inputStatus[input.closest('section').id][input.id] = validation;
+  } else {
+    console.log('no es valido')
     document.getElementById(`${input.id}`).classList.remove("correctInput");
-    document.getElementById(`${input.id}`).classList.add("requiredInput");
-    inputStatus[input.parentElement.parentElement.id][input.id] = false;
+    document.getElementById(`${input.id}`).classList.add("requiredInput")
+    inputStatus[input.closest('section').id][input.id] = validation;
   }
 }
 
+
+//Verifies if password confirmation is OK
 function matchPassword(input) {
   const password = document.getElementById('password');
   const confirmPassword = document.getElementById('confirmPassword');
@@ -245,43 +268,31 @@ function matchPassword(input) {
     if (password.value !== confirmPassword.value) {
       confirmPassword.classList.remove("correctInput");
       confirmPassword.classList.add("requiredInput");
-      inputStatus[input.parentElement.parentElement.id][input.id] = false;
+      inputStatus[input.closest('section').id][input.id] = false;
     } else {
       confirmPassword.classList.add("correctInput");
       confirmPassword.classList.remove("requiredInput");
-      inputStatus[input.parentElement.parentElement.id][input.id] = true;
+      inputStatus[input.closest('section').id][input.id] = true;
     }
   }
 }
 
+//Reset input values
 function clearInputs() {
   profileInputs.forEach(input => {
     input.classList.remove("correctInput");
     input.classList.remove("requiredInput");
     input.value = '';
   });
-
 }
 
+//Identifies activeSection and check if all inputs are OK
 function nextSection() {
-  const addressSection = document.getElementById('address');
-  const profileSection = document.getElementById('profile');
   const activeSection = document.querySelector('[activeSection]');
-
-  if (activeSection.id == addressSection.id || activeSection.id == profileSection.id) {
-    if (Object.values(inputStatus[activeSection.id]).every(e => e === true)) {
-      activeSection.classList.toggle('hideSection');
-      activeSection.nextElementSibling.classList.toggle('hideSection');
-      activeSection.removeAttribute('activeSection')
-      activeSection.nextElementSibling.setAttribute(['activeSection'], '')
-        }
-    
-  } else {
+  if (Object.values(inputStatus[activeSection.id]).every(input => input === true)){
     activeSection.classList.toggle('hideSection');
     activeSection.nextElementSibling.classList.toggle('hideSection');
     activeSection.removeAttribute('activeSection')
     activeSection.nextElementSibling.setAttribute('activeSection', '')
-
   }
-
 }

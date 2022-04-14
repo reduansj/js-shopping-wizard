@@ -13,7 +13,7 @@
 <body>
     <main class="main-container">
         <nav class="header">Header</nav>
-        <section activeSection id="product" class="section">
+        <section activeSection id="product-page" class="section">
             <div class="productImagesContainer">
                 <div miniatureProductImage class="productViewMiniaturesContainer" id="productViewMiniaturesContainer">
                     <img default src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="miniatureMain"
@@ -35,13 +35,14 @@
 
             <div class="productInformationSelection">
                 <h1>New Balance</h1>
-                <h2 class="productDescription" id="productDescription">GM500 Black</h1>
+                <h2 class="productDescription" id="productDescription">GM500</h1>
                     <h3 class="productPriceContainer">Price</h3>
-                    <p class="productPrice" id="productPrice"> 45.99€</p>
+                    <p class="productPrice" id="productPrice"></p>
                     <h3 class="productSizeContainer">Size</h3>
                     <form class="productSizeSelector">
                         <label for="productSize">Choose size:</label>
                         <select name="productSize" id="productSize">
+                            <option disabled selected value>-- select an option</option>
                             <option value="37">37</option>
                             <option value="38">38</option>
                             <option value="39">39</option>
@@ -88,7 +89,7 @@
             </div>
         </section>
 
-        <section id="profile" class="profile section form-pages hideSection">
+        <section id="profile-page" class="profile section form-pages hideSection">
 
             <h2>Profile</h2>
             <form action="" id="profile" class="profile-form">
@@ -120,8 +121,7 @@
             </footer>
         </section>
 
-
-        <section id="address" class=" addresssection form-pages hideSection">
+        <section id="address-page" class=" addresssection form-pages hideSection">
             <section id="address-page" class="address-page">
                 <h2>Address</h2>
                 <form action="" id="address" class="adress-form">
@@ -143,14 +143,14 @@
             </section>
         </section>
 
-        <section id="shipping-page" class="section">
+        <section  id="shipping-page" class="section hideSection">
             <article>
                 <header>
                     <h2>Shipping</h2>
                 </header>
                 <article>
                     <h3>Shipping type</h3>
-                    <form action="" id="form__shipping" class="form__shipping">
+                    <form action="" id="shipping" class="form__shipping">
                         <input type="radio" id="option__free-shipping" name="shipping-type" value="free">
                         <label for="option__free-shipping">Free (72h)</label><br>
                         <input type="radio" id="option__extra-shipping" name="shipping-type" value="extra">
@@ -175,7 +175,7 @@
             </article>
         </section>
 
-        <section id="finish" class="section hideSection"></section>
+        <section id="finish-page" class="section hideSection"></section>
         <footer class="footer">
             <div>
                 <button id="clearForm" class="submitBtn">Clear Form</button>
