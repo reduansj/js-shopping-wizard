@@ -2,8 +2,6 @@
 section{
     height:auto;
     max-width: 1216px;
-    background-color: lightblue;
-    border: 2px solid purple;
     margin-left: 18px;
     margin-right: 18px;
     display: flex;
@@ -13,6 +11,7 @@ section{
     flex-direction: column;
 }
 
-.hideSection{
+
+.hideElement{
     display:none;
 }

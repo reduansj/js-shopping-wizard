@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <main class="main-container">
+    <main id="main" class="main-container">
         <nav class="header">Header</nav>
         <section activeSection id="product-page" class="section">
             <div class="productImagesContainer">
@@ -89,61 +89,89 @@
             </div>
         </section>
 
-        <section id="profile-page" class="profile section form-pages hideSection">
+        <section id="profile-page" class="profile section form-pages hideElement">
 
             <h2>Profile</h2>
             <form action="" id="profile" class="profile-form">
                 <div id="input_name">
                     <label for="userName" class="label">User name:</label>
                     <input type="text" id="userName" name="name" class="input">
-                    <p class="input-error">The current value is not correct.</p><br>
+                    <p id="userName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
                 </div>
-                <div id="input_email">
+                <div>
                     <label for="email" class="label"></label>Email:</label>
                     <input type="email" id="email" name="email" class="input">
-                    <p class="input-error">The current value is not correct.</p><br>
+                    <p id="email_paragraph" class="errorMsg hideElement">Add a valid email.</p>
                 </div>
-                <div id="input_password">
+                <div>
                     <label for="password" class="label"></label>Password:</label>
                     <input type="password" id="password" name="password" class="input">
-                    <p class="input-error">The current value is not correct.</p><br>
+                    <p id="password_paragraph" class="errorMsg hideElement">The password must have at least six characters.</p>
                 </div>
 
                 <div id="input_password2">
                     <label for="confirmPassword" class="label"></label>Confirm Password:</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" class="input">
-                    <p class="input-error">The current value is not correct.</p><br>
-                </div>
-
-            </form>
-            <footer class="btn-container">
-
-            </footer>
+                    <p id="confirmPassword_paragraph" class="errorMsg hideElement">Passwords do not match.</p>
+                    </div>
         </section>
 
-        <section id="address-page" class=" addresssection form-pages hideSection">
-            <section id="address-page" class="address-page">
-                <h2>Address</h2>
-                <form action="" id="address" class="adress-form">
+        <section id="address-page" class=" addresssection form-pages hideElement">
+        
+            <h2>ADDRESS</h2>
+            <form action="" id="address" class="adress-form">
+                <div>
                     <label for="" class="label">First name:</label>
-                    <input type="text" class="input">
+                    <input type="text" id="firstName" class="input">
+                    <p id="firstName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
+                    </div>
+                    <div>
                     <label for="" class="label">Last name:</label>
-                    <input type="text" class="input">
+                    <input type="text" id="lastName" class="input">
+                    <p id="lastName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
+                    </div>
+                    <div>
                     <label for="" class="label">Birthday:</label>
-                    <input type="date" class="input">
-                    <label for="" class="label">Address1:</label>
-                    <input type="text" class="input">
+                    <input type="date" id="birthday" class="input">
+                    <p id="birthday_paragraph" class="errorMsg hideElement">The value is not correct</p>
+                    </div>
+                    <div>
+                        <label for="" class="label">Address:</label>
+                        <input type="text" id="address1" class="input">
+                        <p id="address1_paragraph" class="errorMsg hideElement">The value is not correct</p>
+                    </div>
+                    <div>
                     <label for="" class="label">Address2:</label>
-                    <input type="text" class="input">
+                    <input type="text" id="address2" class="input">
+                    <p id="address2_paragraph" class="errorMsg hideElement">The value is not correct</p>
+                    </div>
+                    <div>
+                        <label for="" class="label">Postal code:</label>
+                        <input type="text" id="postalCode" class="input">
+                        <p id="postalCode_paragraph" class="errorMsg hideElement">The value is not correct</p>
+                    </div>
+                    <div>
                     <label for="" class="label">Country:</label>
-                    <input type="text" class="input">
+                    <select class="input" id="country">
+                        <option value="Spain" selected>Spain</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="France">France</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Greece">Greece</option>
+                    </select>
+                    </div>
+                    <div>
                     <label for="" class="label">Phone</label>
-                    <input type="" class="input">
-                </form>
-            </section>
+                    <input type="tel" id="phone" class="input">
+                    <p id="phone_paragraph" class="errorMsg hideElement">The value is not correct</p>
+                    </div>
+                    <div>
+                        <label><input type="checkbox" name=""> This is my regular address</label>
+                    </div>
+                    </form>
         </section>
 
-        <section  id="shipping-page" class="section hideSection">
+        <section id="shipping-page" class="section hideElement">
             <article>
                 <header>
                     <h2>Shipping</h2>
@@ -175,12 +203,15 @@
             </article>
         </section>
 
-        <section id="finish-page" class="section hideSection"></section>
+        <section id="finish-page" class="section hideElement"></section>
         <footer class="footer">
             <div>
-                <button id="clearForm" class="submitBtn">Clear Form</button>
-                <button id="next" class="submitBtn">Next</button>
+                <div>
+                    <button id="clearForm" class="submitBtn">Clear Form</button>
+                    <button id="next" class="submitBtn">Next</button>
+                </div>
             </div>
+
         </footer>
 
     </main>

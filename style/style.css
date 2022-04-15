@@ -23,10 +23,7 @@ body,
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    border: 5px solid black;
-    background-color: bisque;
 }
-
 
 
 .header {
@@ -35,21 +32,10 @@ body,
     width: 100%;
 }
 
-/* .product-page {
-
-} */
-
-
-.footer {
-    background-color: brown;
-    height: 100px;
-    width: 100%;
-}
 
 .productImagesContainer{
     display: flex;
     flex-direction: row;
-    border: 2px solid yellow;
     height: max-content;
     width: 70%;
     position: sticky;
@@ -58,7 +44,6 @@ body,
 
 .productViewMiniaturesContainer {
     width: 20%;
-    border: 3px solid green;
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -87,7 +72,6 @@ body,
     margin-left: 10rem;
     width: 50%;
     display: block;
-    border: 3px solid pink;
     height: 1500px;
 }
 
@@ -132,6 +116,15 @@ body,
 /* PROFILE SECTION STARTS HERE */
 .input {
     display:flex;
+    width: 100%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+    background-color: rgba(216, 216, 201, 0.719);
   
   }
   .requiredInput{
@@ -147,3 +140,55 @@ body,
   .input-error{
     display: none;
   }
+
+form{
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.label {
+display: block;
+font-weight: 700;
+padding: 10px;
+cursor: pointer;
+}
+
+
+.input:focus {
+border: 3px solid #0075FF;
+outline: none;
+box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+.errorMsg{
+font-size: 1.5rem;
+margin-bottom: 0;
+}
+
+
+/*FOOTER BUTTONS*/
+
+footer {
+display: flex;
+justify-content: flex-end;
+padding: 3rem;
+margin: auto;
+height: 100px;
+width: 100%;
+} 
+
+button {
+background-color: black;
+color: #fff;
+height: 45px;
+width: 100px;
+font-weight: bold;
+border-radius: 3px;
+cursor: pointer;
+transition: .1s ease all;
+}
+
+button:hover {
+box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
