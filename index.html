@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Balance GM500</title>
     <link rel="stylesheet" href="./style/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <script defer src='./script/app.js' type='text/javascript'></script>
 </head>
 
@@ -32,15 +34,13 @@
                 <img class="mainProductImage" id="mainProductImage"
                     src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="Product Image">
             </div>
-
             <div class="productInformationSelection">
                 <h1>New Balance</h1>
-                <h2 class="productDescription" id="productDescription">GM500</h1>
+                <h2 class="productDescription" id="productDescription">GM500 Black</h1>
                     <h3 class="productPriceContainer">Price</h3>
-                    <p class="productPrice" id="productPrice"></p>
+                    <p class="productPrice" id="productPrice">45.99€</p>
                     <h3 class="productSizeContainer">Size</h3>
                     <form class="productSizeSelector">
-                        <label for="productSize">Choose size:</label>
                         <select name="productSize" id="productSize">
                             <option disabled selected value>-- select an option</option>
                             <option value="37">37</option>
@@ -56,7 +56,7 @@
                             <option value="47">47</option>
                         </select>
                     </form>
-                    <p class="productColorContainer">Color: <b>white</b></p>
+                    <p class="productColorContainer" id="productColor">Color: <b>black</b></p>
                     <div class="productColorSelectorContainer" id="productColorSelectorContainer">
                         <img default class="productColorSelectorImageSelected"
                             src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="GM500 Black" color="black">
@@ -88,15 +88,14 @@
                     <button id="productBuy" class="productBuy">Buy</button>
             </div>
         </section>
-
         <section id="profile-page" class="profile section form-pages hideElement">
-
             <h2>Profile</h2>
             <form action="" id="profile" class="profile-form">
                 <div id="input_name">
                     <label for="userName" class="label">User name:</label>
                     <input type="text" id="userName" name="name" class="input">
-                    <p id="userName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
+                    <p id="userName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4
+                        characters.</p>
                 </div>
                 <div>
                     <label for="email" class="label"></label>Email:</label>
@@ -106,51 +105,53 @@
                 <div>
                     <label for="password" class="label"></label>Password:</label>
                     <input type="password" id="password" name="password" class="input">
-                    <p id="password_paragraph" class="errorMsg hideElement">The password must have at least six characters.</p>
+                    <p id="password_paragraph" class="errorMsg hideElement">The password must have at least six
+                        characters.</p>
                 </div>
 
                 <div id="input_password2">
                     <label for="confirmPassword" class="label"></label>Confirm Password:</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" class="input">
                     <p id="confirmPassword_paragraph" class="errorMsg hideElement">Passwords do not match.</p>
-                    </div>
+                </div>
+            </form>
         </section>
-
         <section id="address-page" class=" addresssection form-pages hideElement">
-        
             <h2>ADDRESS</h2>
             <form action="" id="address" class="adress-form">
                 <div>
                     <label for="" class="label">First name:</label>
                     <input type="text" id="firstName" class="input">
-                    <p id="firstName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
-                    </div>
-                    <div>
+                    <p id="firstName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4
+                        characters.</p>
+                </div>
+                <div>
                     <label for="" class="label">Last name:</label>
                     <input type="text" id="lastName" class="input">
-                    <p id="lastName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
-                    </div>
-                    <div>
+                    <p id="lastName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4
+                        characters.</p>
+                </div>
+                <div>
                     <label for="" class="label">Birthday:</label>
                     <input type="date" id="birthday" class="input">
                     <p id="birthday_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                        <label for="" class="label">Address:</label>
-                        <input type="text" id="address1" class="input">
-                        <p id="address1_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
+                </div>
+                <div>
+                    <label for="" class="label">Address:</label>
+                    <input type="text" id="address1" class="input">
+                    <p id="address1_paragraph" class="errorMsg hideElement">The value is not correct</p>
+                </div>
+                <div>
                     <label for="" class="label">Address2:</label>
                     <input type="text" id="address2" class="input">
                     <p id="address2_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                        <label for="" class="label">Postal code:</label>
-                        <input type="text" id="postalCode" class="input">
-                        <p id="postalCode_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
+                </div>
+                <div>
+                    <label for="" class="label">Postal code:</label>
+                    <input type="text" id="postalCode" class="input">
+                    <p id="postalCode_paragraph" class="errorMsg hideElement">The value is not correct</p>
+                </div>
+                <div>
                     <label for="" class="label">Country:</label>
                     <select class="input" id="country">
                         <option value="Spain" selected>Spain</option>
@@ -159,18 +160,17 @@
                         <option value="Germany">Germany</option>
                         <option value="Greece">Greece</option>
                     </select>
-                    </div>
-                    <div>
+                </div>
+                <div>
                     <label for="" class="label">Phone</label>
                     <input type="tel" id="phone" class="input">
                     <p id="phone_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                        <label><input type="checkbox" name=""> This is my regular address</label>
-                    </div>
-                    </form>
+                </div>
+                <div>
+                    <label><input type="checkbox" name=""> This is my regular address</label>
+                </div>
+            </form>
         </section>
-
         <section id="shipping-page" class="section hideElement">
             <article>
                 <header>
@@ -194,15 +194,20 @@
                         <p id="output__delivery-date"></p>
                     </div>
                 </article>
-                <input type="checkbox" name="gift-check">
-                <label for="gift-check">Is it a gift?</label>
-                <p>Gift message</p>
-                <input id="input__gift-message" type="textarea" disabled>
-                <p>Gift wrapper image</p>
-                <input type="file" id="wrapper__gift-image" class="wrapper__gift-image">
+                <article>
+                    <input type="checkbox" name="gift-check">
+                    <label for="gift-check">Is it a gift?</label>
+                    <div id="gift-information__container" class="hideElement">
+                        <p>Gift message</p>
+                        <input id="input__gift-message" type="textarea" disabled>
+                        <p>Gift wrapper image</p>
+                        <input type="file" id="input__gift-image" accept="image/png,image/jpeg">
+                        <label for="input__gift-image">
+                            <i class ="material-icons">add_photo_alternate</i>
+                    </div>
+                </article>
             </article>
         </section>
-
         <section id="finish-page" class="section hideElement"></section>
         <footer class="footer">
             <div>
@@ -211,9 +216,7 @@
                     <button id="next" class="submitBtn">Next</button>
                 </div>
             </div>
-
         </footer>
-
     </main>
 </body>
 

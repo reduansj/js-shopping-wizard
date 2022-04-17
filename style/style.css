@@ -9,6 +9,10 @@
 /* SECTION FORMAT */
 @import './section_style.css';
 
+/*IMG INPUT*/
+
+@import './image_input.css';
+
 body,
 * {
     margin: 0;
@@ -23,45 +27,17 @@ body,
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-<<<<<<< HEAD
 }
 
-
-=======
-    border: 5px solid black;
-    background-color: bisque;
-}
-
-
-
->>>>>>> 608eb12a76ab4ada22585702134b8b6c2bd93e09
 .header {
-    background-color: brown;
+    background-color: lightgrey;
     height: 100px;
     width: 100%;
 }
-
-<<<<<<< HEAD
-=======
-/* .product-page {
-
-} */
-
-
-.footer {
-    background-color: brown;
-    height: 100px;
-    width: 100%;
-}
->>>>>>> 608eb12a76ab4ada22585702134b8b6c2bd93e09
 
 .productImagesContainer{
     display: flex;
     flex-direction: row;
-<<<<<<< HEAD
-=======
-    border: 2px solid yellow;
->>>>>>> 608eb12a76ab4ada22585702134b8b6c2bd93e09
     height: max-content;
     width: 70%;
     position: sticky;
@@ -70,10 +46,6 @@ body,
 
 .productViewMiniaturesContainer {
     width: 20%;
-<<<<<<< HEAD
-=======
-    border: 3px solid green;
->>>>>>> 608eb12a76ab4ada22585702134b8b6c2bd93e09
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -102,10 +74,6 @@ body,
     margin-left: 10rem;
     width: 50%;
     display: block;
-<<<<<<< HEAD
-=======
-    border: 3px solid pink;
->>>>>>> 608eb12a76ab4ada22585702134b8b6c2bd93e09
     height: 1500px;
 }
 
@@ -129,7 +97,6 @@ body,
     border: 1px solid black;
 }
 
-
 /*Change*/
 @media screen and (min-width: 1280px){
 .product-page{
@@ -150,7 +117,6 @@ body,
 /* PROFILE SECTION STARTS HERE */
 .input {
     display:flex;
-<<<<<<< HEAD
     width: 100%;
 	background: #fff;
 	border: 3px solid transparent;
@@ -160,9 +126,6 @@ body,
 	padding: 0 40px 0 10px;
 	transition: .3s ease all;
     background-color: rgba(216, 216, 201, 0.719);
-=======
->>>>>>> 608eb12a76ab4ada22585702134b8b6c2bd93e09
-  
   }
   .requiredInput{
     display:flex;
@@ -176,7 +139,6 @@ body,
   }
   .input-error{
     display: none;
-<<<<<<< HEAD
   }
 
 form{
@@ -204,7 +166,6 @@ font-size: 1.5rem;
 margin-bottom: 0;
 }
 
-
 /*FOOTER BUTTONS*/
 
 footer {
@@ -214,7 +175,7 @@ padding: 3rem;
 margin: auto;
 height: 100px;
 width: 100%;
-} 
+}
 
 button {
 background-color: black;
@@ -230,6 +191,3 @@ transition: .1s ease all;
 button:hover {
 box-shadow: 3px 0px 30px rgba(163,163,163, 1);
 }
-=======
-  }
->>>>>>> 608eb12a76ab4ada22585702134b8b6c2bd93e09
