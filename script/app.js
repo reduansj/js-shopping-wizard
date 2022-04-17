@@ -198,6 +198,21 @@ shippingInput.addEventListener('change', e => {
 })
 checkboxGiftMessage.addEventListener('click', () => {inputGiftMessage.disabled = !inputGiftMessage.disabled; inputGiftMessage.value = ''; giftInformationContainer.classList.toggle('hideElement')})
 
+//Zoom Image
+
+const modal = document.getElementById("myModal");
+const imageZoom = document.getElementById("image-zoom")
+mainProductImage.addEventListener('click', zoomImage)
+
+function zoomImage(){
+  modal.style.display = 'block';
+  imageZoom.src = mainProductImage.src
+}
+
+document.getElementById("close__image-zoom").addEventListener('click', () =>{
+  modal.style.display='none'
+})
+
 /*FUNCTIONS*/
 
 function deliveryDateEstimation(e) {
@@ -218,8 +233,8 @@ function deliveryDateEstimation(e) {
 //Hovers last mouseover image and change the src of mainProductImage
 function miniatureProductImageHover(e) {
   if (e.target.src != mainProductImage.src) {
-    miniatureActiveImage.classList.replace('miniatureProductImageSelected', 'miniatureProductImage')
-    e.target.classList.replace('miniatureProductImage', 'miniatureProductImageSelected')
+    miniatureActiveImage.classList.toggle('miniatureProductImageSelected')
+    e.target.classList.toggle('miniatureProductImageSelected')
     miniatureActiveImage = e.target
     mainProductImage.src = e.target.src
   }

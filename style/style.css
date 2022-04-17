@@ -13,6 +13,10 @@
 
 @import './image_input.css';
 
+/*Image Zoom*/
+
+@import './image_zoom.css';
+
 body,
 * {
     margin: 0;
@@ -57,9 +61,8 @@ body,
 }
 
 .miniatureProductImageSelected {
-    width: 100%;
     border: 1px solid black;
-    margin-bottom: 15px;
+    opacity: 0.5;
 }
 
 .mainProductImage {
