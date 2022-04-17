@@ -245,8 +245,8 @@ function colorProductImageClick(e) {
     const color = e.target.getAttribute('color')
     const price = productData[color].price
     changeAllImagesPath(color, productViewMiniaturesContainer.children)
-    colorActiveImage.classList.replace('productColorSelectorImageSelected', 'productColorSelectorImage')
-    e.target.classList.replace('productColorSelectorImage', 'productColorSelectorImageSelected')
+    colorActiveImage.classList.toggle('productColorSelectorImageSelected')
+    e.target.classList.toggle('productColorSelectorImageSelected')
     productPrice.textContent = price
     productDescription.textContent = `${productDescription.textContent.split(" ")[0]} ${productData[color]['text']}`
     purchaseSummary.color = color

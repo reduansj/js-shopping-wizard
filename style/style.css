@@ -10,11 +10,9 @@
 @import './section_style.css';
 
 /*IMG INPUT*/
-
 @import './image_input.css';
 
 /*Image Zoom*/
-
 @import './image_zoom.css';
 
 body,
@@ -43,7 +41,7 @@ body,
     display: flex;
     flex-direction: row;
     height: max-content;
-    width: 70%;
+    width: 50%;
     position: sticky;
     top: 0;
 }
@@ -74,10 +72,11 @@ body,
 }
 
 .productInformationSelection{
-    margin-left: 10rem;
+    margin-left: 10%;
     width: 50%;
     display: block;
     height: 1500px;
+    border: 1px solid blue;
 }
 
 .productColorSelectorContainer{
@@ -85,38 +84,25 @@ body,
     align-items: center;
     justify-content: flex;
     flex-wrap: wrap;
-    max-width: 100%;
+
+    border: 1px solid black;
 }
 
 .productColorSelectorImage {
-    width: 5rem;
+    width: 15%;
+    flex-basis: 20%;
     cursor: pointer;
     border: 'none';
 }
 
 .productColorSelectorImageSelected {
-    width: 5rem;
-    cursor: pointer;
     border: 1px solid black;
 }
 
-/*Change*/
-@media screen and (min-width: 1280px){
-.product-page{
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1216px;
-}}
-
-@media screen and (max-width: 768px){
-.productViewMiniaturesContainer{
-    display: none;
-}
-.mainProductImage{
-    width: 100%;
+.productSizeSelector{
+    max-width: 50%;
 }
 
-}
 /* PROFILE SECTION STARTS HERE */
 .input {
     display:flex;
@@ -193,4 +179,26 @@ transition: .1s ease all;
 
 button:hover {
 box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+/*Change*/
+@media only screen and (min-width: 1280px){
+    .product-page{
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1216px;
+    }}
+    
+@media only screen and (max-width: 768px) {
+    .productViewMiniaturesContainer {
+        display: none;
+    }
+
+    .mainProductImage {
+        width: 100%;
+    }
+
+    .productInformationSelection {
+        margin-left: 1rem;
+    }
 }
