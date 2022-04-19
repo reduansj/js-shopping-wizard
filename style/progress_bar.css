@@ -16,7 +16,6 @@ margin-bottom:  10px;
 color:  #000000;
 }
 
-
 .bullet {
 	border: 1px solid #ff7b07;
 	height: 20px;   
@@ -29,23 +28,20 @@ color:  #000000;
   	line-height:20px;
 }
 
-
 .completed  {
 	color:  white;
 	background-color:  #d66e19;
 }
 
-
-
-.completed::after {
+/* .completed::after {
 	content: '';
 	position: absolute;
 	right: -60px;
 	bottom: 10px;
 	height: 1px;
 	width: 54px;
-	background-color: #f88509;
-}
+	background-color: #f88509; 
+} */
 
 /* Base styles and helper stuff */
 .hidden  {

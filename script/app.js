@@ -7,7 +7,7 @@ const productPrice = document.getElementById('productPrice')
 const productDescription = document.getElementById("productDescription")
 const nextSectionBtn = document.getElementById('next');
 const clearInput = document.getElementById('clearForm');
-const profileInputs = document.querySelectorAll('#main input');
+const formInputs = document.querySelectorAll('#main input');
 const buyBtn = document.getElementById('productBuy');
 const productSizeInput = document.querySelector('select#productSize');
 const shippingInput = document.getElementById('shipping');
@@ -19,13 +19,14 @@ const country = document.getElementById('country');
 const phone = document.getElementById('phone');
 const productColorText = document.getElementById('productColor')
 const giftInformationContainer = document.getElementById('gift-information__container')
-const MAX_STEPS = 5;
+const MAX_STEPS = 4;
 let currentStep =1;
 const progressBar = document.getElementById('progress-bar')
 //Progres bar
-const previousBtn = document.getElementById('previousBtn')
+// const previousBtn = document.getElementById('previousBtn')
 const bullets = [...document.querySelectorAll('.bullet')]
 const finishBtn = document.getElementById('finishBtn')
+const btnContainer = document.getElementById('btnContainer')
 // let mainProductImage = document.getElementById("mainProductImage");
 let [miniatureActiveImage, colorActiveImage] =
   document.querySelectorAll("[default]");
@@ -115,24 +116,24 @@ const inputStatus = {
     price: true,
   },
   "profile-page": {
-    userName: false,
-    email: false,
-    password: false,
-    confirmPassword: false,
+    userName: true,
+    email: true,
+    password: true,
+    confirmPassword: true,
   },
   "address-page": {
-    firstName: false,
-    lastName: false,
-    birthday: false,
-    address1: false,
-    postalCode: false,
-    phone: false,
+    firstName: true,
+    lastName: true,
+    birthday: true,
+    address1: true,
+    postalCode: true,
+    phone: true,
   },
   "shipping-page": {
-    type: false,
+    type: true,
   },
   "finish-page": {
-    termsConditions: false,
+    termsConditions: true,
   },
 };
 
@@ -221,9 +222,6 @@ document.getElementById("input__gift-image").addEventListener('input', e => cons
 
 //Declare events
 clearInput.addEventListener("click", clearInputs);
-profileInputs.forEach((input) => {
-  input.addEventListener("input", updateInputs);
-});
 country.addEventListener("click", addCountryCode);
 productSizeInput.addEventListener("change", (e) => {
   purchaseSummary.size = e.target.value;
@@ -243,13 +241,13 @@ formInputs.forEach((input) => {
     updateInputs(e);
   });
 });
-buyBtn.addEventListener("click", () => {
-  timer();
-  nextSection();
+buyBtn.addEventListener("click", (e) => {
+  //timer();
+  nextSection(e);
 });
-nextSectionBtn.addEventListener("click", () => {
+nextSectionBtn.addEventListener("click", (e) => {
   getFormData();
-  nextSection();
+  nextSection(e);
 });
 
 //Zoom Image
@@ -298,7 +296,8 @@ function colorProductImageClick(e) {
   if (e.target.src != mainProductImage.src) {
     const color = e.target.getAttribute('color')
     const price = productData[color].price
-    changeAllImagesPath(color, productViewMiniaturesContainer.children)
+    const images = document.querySelectorAll("#productViewMiniaturesContainer img")
+    changeAllImagesPath(color, images)
     colorActiveImage.classList.toggle('productColorSelectorImageSelected')
     e.target.classList.toggle('productColorSelectorImageSelected')
     productPrice.textContent = price
@@ -326,7 +325,7 @@ function colorProductImageMouseOut(e){
 function changeAllImagesPath(color, miniatureImages) {
   relativePath = productData[color]['path']
   for (let miniature of miniatureImages) {
-    viewProductFile = miniature.src.split('/')[miniature.src.split('/').length - 1].split('-')
+    const viewProductFile = miniature.src.split('/')[miniature.src.split('/').length - 1].split('-')
     viewProductFile[1] = color;
     miniature.src = `${relativePath}${viewProductFile.join('-')}`
     if (miniature === miniatureActiveImage) {
@@ -354,6 +353,7 @@ const checkInputexpression = {
 function updateInputs(e) {
   const currentInput = e.target;
   const activeSectionId = getActiveSectionId();
+  console.log(activeSectionId)
   const isShippingSection = activeSectionId === "shipping-page";
 
   if (isShippingSection) {
@@ -403,11 +403,11 @@ function matchPassword(input) {
     confirmPassword.classList.add("requiredInput");
     inputStatus[input.closest("section").id][input.id] = false;
     document
-      .getElementById(`${input.id}_matchError`)
+      .getElementById(`${input.id}_errorMssg`)
       .classList.remove("hideElement");
   } else {
     document
-      .getElementById(`${input.id}_matchError`)
+      .getElementById(`${input.id}_errorMssg`)
       .classList.add("hideElement");
     confirmPassword.classList.remove("requiredInput");
   }
@@ -437,30 +437,25 @@ function clearInputs() {
 }
 
 //Identifies activeSection and check if all inputs are OK
-function nextSection(e) {
-  const activeSection = document.querySelector('[activeSection]');
-  console.log(currentStep)
-  if (e.target.id === 'productBuy') {
-    progressBar.classList.toggle("hideElement")
-    bullets[currentStep -1].classList.add('completed');
-    // currentStep += 1;
-  } else {
-    bullets[currentStep -1].classList.add('completed');
-    currentStep += 1;
-    previousBtn.disabled = false;
-    if (currentStep === MAX_STEPS) {
-      nextSectionBtn.disabled = true;
-      finishBtn.disabled = false;
-    }
-  }
+function nextSection() {
+  const activeSection = document.querySelector('[active-section]');
+  
   if (Object.values(inputStatus[activeSection.id]).every(input => input === true)) {
+    bullets[currentStep -1].classList.add('completed');
+    if (activeSection.id == "shipping-page") {
+      document.getElementById("btnContainer").classList.add("hideElement");
+    } else if (activeSection.id === 'product-page') {
+      btnContainer.classList.toggle('hideElement')
+      progressBar.classList.toggle("hideElement")
+    } 
+    currentStep += 1;
+    }
     activeSection.classList.toggle('hideElement');
     activeSection.nextElementSibling.classList.toggle('hideElement');
-    activeSection.removeAttribute('activeSection')
-    activeSection.nextElementSibling.setAttribute('activeSection', '')
+    activeSection.removeAttribute('active-section')
+    activeSection.nextElementSibling.setAttribute('active-section', '')
   }
 
-}
 
 const imageMoveZoom = document.getElementById("mainProductImage")
 
@@ -485,43 +480,43 @@ imageMoveZoom.addEventListener("mousemove", (e) => {
 
 });
 
-previousBtn.addEventListener('click',  ()  =>  {
-	bullets[currentStep  -  2].classList.remove('completed');
-	nextSectionBtn.disabled  =  false;
-	finishBtn.disabled  =  true;
-  console.log(currentStep)
-	if  (currentStep  ===  2)  {
-    previousBtn.disabled  =  true;
-	}
-  currentStep  -=  1;
-  const activeSection = document.querySelector('[activeSection]');
-  activeSection.classList.toggle('hideElement');
-  activeSection.previousElementSibling.classList.toggle('hideElement');
-  activeSection.removeAttribute('activeSection')
-  activeSection.previousElementSibling.setAttribute('activeSection', '')
-});
+// previousBtn.addEventListener('click',  ()  =>  {
+// 	bullets[currentStep  -  2].classList.remove('completed');
+// 	nextSectionBtn.disabled  =  false;
+// 	finishBtn.disabled  =  true;
+//   console.log(currentStep)
+// 	if  (currentStep  ===  2)  {
+//     previousBtn.disabled  =  true;
+// 	}
+//   currentStep  -=  1;
+//   const activeSection = document.querySelector('[activeSection]');
+//   activeSection.classList.toggle('hideElement');
+//   activeSection.previousElementSibling.classList.toggle('hideElement');
+//   activeSection.removeAttribute('activeSection')
+//   activeSection.previousElementSibling.setAttribute('activeSection', '')
+// });
 
-//refrescar pag cuando le damos a finish
-finishBtn.addEventListener('click',  ()  =>  {
-	location.reload();
-});
-function nextSection() {
-  const activeSection = document.querySelector("[active-section]");
-  if (
-    Object.values(inputStatus[activeSection.id]).every(
-      (input) => input === true
-    )
-  ) {
-    activeSection.classList.toggle("hideElement");
-    activeSection.nextElementSibling.classList.toggle("hideElement");
-    activeSection.removeAttribute("active-section");
-    activeSection.nextElementSibling.setAttribute("active-section", "");
-  }
-  document.getElementById("btnContainer").classList.remove("hideElement");
-  if (activeSection.id == "shipping-page") {
-    document.getElementById("btnContainer").classList.add("hideElement");
-  }
-}
+// //refrescar pag cuando le damos a finish
+console.log(finishBtn)
+finishBtn.addEventListener('click', nextSection);
+
+// function nextSection() {
+//   const activeSection = document.querySelector("[active-section]");
+//   if (
+//     Object.values(inputStatus[activeSection.id]).every(
+//       (input) => input === true
+//     )
+//   ) {
+//     activeSection.classList.toggle("hideElement");
+//     activeSection.nextElementSibling.classList.toggle("hideElement");
+//     activeSection.removeAttribute("active-section");
+//     activeSection.nextElementSibling.setAttribute("active-section", "");
+//   }
+//   document.getElementById("btnContainer").classList.remove("hideElement");
+//   if (activeSection.id == "shipping-page") {
+//     document.getElementById("btnContainer").classList.add("hideElement");
+//   }
+// }
 
 //Get active section id
 const getActiveSectionId = () => {
