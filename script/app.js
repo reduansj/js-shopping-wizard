@@ -19,9 +19,13 @@ const country = document.getElementById('country');
 const phone = document.getElementById('phone');
 const productColorText = document.getElementById('productColor')
 const giftInformationContainer = document.getElementById('gift-information__container')
-const MAX_STEPS = 4;
-let currentStep = 1;
+const MAX_STEPS = 5;
+let currentStep =1;
 const progressBar = document.getElementById('progress-bar')
+//Progres bar
+const previousBtn = document.getElementById('previousBtn')
+const bullets = [...document.querySelectorAll('.bullet')]
+const finishBtn = document.getElementById('finishBtn')
 
 //Product Data Information
 const productData = {
@@ -130,6 +134,7 @@ const purchaseSummary = {
   color: 'black',
   size: null,
   price: 45.99,
+  imgSrc: '',
   shipping: null,
   deliveryDate: null,
   giftMessage: null,
@@ -368,12 +373,13 @@ function clearInputs() {
 //Identifies activeSection and check if all inputs are OK
 function nextSection(e) {
   const activeSection = document.querySelector('[activeSection]');
-
+  console.log(currentStep)
   if (e.target.id === 'productBuy') {
-    console.log(e.target.classList)
     progressBar.classList.toggle("hideElement")
+    bullets[currentStep -1].classList.add('completed');
+    // currentStep += 1;
   } else {
-    bullets[currentStep - 1].classList.add('completed');
+    bullets[currentStep -1].classList.add('completed');
     currentStep += 1;
     previousBtn.disabled = false;
     if (currentStep === MAX_STEPS) {
@@ -413,34 +419,20 @@ imageMoveZoom.addEventListener("mousemove", (e) => {
 
 });
 
-
-
-//Progres bar
-
-const previousBtn = document.getElementById('previousBtn')
-const bullets = [...document.querySelectorAll('.bullet')]
-const finishBtn = document.getElementById('finishBtn')
-
-nextSectionBtn.addEventListener('click',  ()  =>  {
-	bullets[currentStep  -  1].classList.add('completed');
-	currentStep  +=  1;
-	previousBtn.disabled  =  false;
-	if  (currentStep  ===  MAX_STEPS)  {
-		nextSectionBtn.disabled  =  true;
-		finishBtn.disabled  =  false;
-	}
-	
-});
-
-
 previousBtn.addEventListener('click',  ()  =>  {
 	bullets[currentStep  -  2].classList.remove('completed');
-	currentStep  -=  1;
 	nextSectionBtn.disabled  =  false;
 	finishBtn.disabled  =  true;
-	if  (currentStep  ===  1)  {
-		previousBtn.disabled  =  true;
+  console.log(currentStep)
+	if  (currentStep  ===  2)  {
+    previousBtn.disabled  =  true;
 	}
+  currentStep  -=  1;
+  const activeSection = document.querySelector('[activeSection]');
+  activeSection.classList.toggle('hideElement');
+  activeSection.previousElementSibling.classList.toggle('hideElement');
+  activeSection.removeAttribute('activeSection')
+  activeSection.previousElementSibling.setAttribute('activeSection', '')
 });
 
 //refrescar pag cuando le damos a finish
