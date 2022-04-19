@@ -13,7 +13,10 @@
 <body>
     <main id="main" class="main-container">
         <nav class="header">Header</nav>
-        <section activeSection id="product-page" class="section">
+        <div id="timeRemainder" class="timeRemainder">
+            <p id="timeLeft"></p>
+        </div>
+        <section active-section id="product-page" class="section">
             <div class="productImagesContainer">
                 <div miniatureProductImage class="productViewMiniaturesContainer" id="productViewMiniaturesContainer">
                     <img default src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="miniatureMain"
@@ -90,68 +93,50 @@
         </section>
 
         <section id="profile-page" class="profile section form-pages hideElement">
-
             <h2>Profile</h2>
             <form action="" id="profile" class="profile-form">
-                <div id="input_name">
-                    <label for="userName" class="label">User name:</label>
+                    <label class="form_label" for="userName">User name:</label>
                     <input type="text" id="userName" name="name" class="input">
-                    <p id="userName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
-                </div>
-                <div>
-                    <label for="email" class="label"></label>Email:</label>
+                    <p id="userName_errorMssg" class="errorMsg hideElement">Write a text without spaces length 5-20.</p>
+                    
+                    <label class="form_label" for="email">Email:</label>
                     <input type="email" id="email" name="email" class="input">
-                    <p id="email_paragraph" class="errorMsg hideElement">Add a valid email.</p>
-                </div>
-                <div>
-                    <label for="password" class="label"></label>Password:</label>
+                    <p id="email_errorMssg" class="errorMsg hideElement">Add a valid email max length 50.</p>
+                    
+                    <label class="form_label" for="password">Password:</label>
                     <input type="password" id="password" name="password" class="input">
-                    <p id="password_paragraph" class="errorMsg hideElement">The password must have at least six characters.</p>
-                </div>
+                    <p id="password_errorMssg" class="errorMsg hideElement">At least one number, uppercase, lowercase and special character.
+                    </p>
+                    <p id="password_matchError" class="errorMsg hideElement">Passwords do not match.</p>
 
-                <div id="input_password2">
-                    <label for="confirmPassword" class="label"></label>Confirm Password:</label>
+                    <label for="confirmPassword">Confirm Password:</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" class="input">
-                    <p id="confirmPassword_paragraph" class="errorMsg hideElement">Passwords do not match.</p>
-                    </div>
+                    <p id="confirmPassword_matchError" class="errorMsg hideElement">Passwords do not match.</p>
+                    </form>
         </section>
 
         <section id="address-page" class=" addresssection form-pages hideElement">
-        
             <h2>ADDRESS</h2>
             <form action="" id="address" class="adress-form">
-                <div>
-                    <label for="" class="label">First name:</label>
+                    <label for="firstName">First name:</label>
                     <input type="text" id="firstName" class="input">
-                    <p id="firstName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
-                    </div>
-                    <div>
-                    <label for="" class="label">Last name:</label>
+                    <p id="firstName_errorMssg" class="errorMsg hideElement">Max length 20.</p>
+                    <label for="lastName">Last name:</label>
                     <input type="text" id="lastName" class="input">
-                    <p id="lastName_paragraph" class="errorMsg hideElement">First letter must be uppercase, at least 4 characters.</p>
-                    </div>
-                    <div>
-                    <label for="" class="label">Birthday:</label>
+                    <p id="lastName_errorMssg" class="errorMsg hideElement">Max length 20.</p>
+                    <label for="birthday">Birthday:</label>
                     <input type="date" id="birthday" class="input">
-                    <p id="birthday_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                        <label for="" class="label">Address:</label>
+                    <p id="birthday_errorMssg" class="errorMsg hideElement">Insert your birthdate.</p>
+                    <label for="address1">Address:</label>
                         <input type="text" id="address1" class="input">
-                        <p id="address1_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                    <label for="" class="label">Address2:</label>
+                        <p id="address1_errorMssg" class="errorMsg hideElement">Max length 50.</p>
+                        <label for="address2">Address2:</label>
                     <input type="text" id="address2" class="input">
-                    <p id="address2_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                        <label for="" class="label">Postal code:</label>
+                    <p id="address2_errorMssg" class="errorMsg hideElement">Max length 50.</p>
+                    <label for="postalCode">Postal code:</label>
                         <input type="text" id="postalCode" class="input">
-                        <p id="postalCode_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                    <label for="" class="label">Country:</label>
+                        <p id="postalCode_errorMssg" class="errorMsg hideElement">Write your zip code max length 5.</p>
+                        <label for="country">Country:</label>
                     <select class="input" id="country">
                         <option value="Spain" selected>Spain</option>
                         <option value="Andorra">Andorra</option>
@@ -159,15 +144,10 @@
                         <option value="Germany">Germany</option>
                         <option value="Greece">Greece</option>
                     </select>
-                    </div>
-                    <div>
-                    <label for="" class="label">Phone</label>
+                    <label for="phone">Phone</label>
                     <input type="tel" id="phone" class="input">
-                    <p id="phone_paragraph" class="errorMsg hideElement">The value is not correct</p>
-                    </div>
-                    <div>
-                        <label><input type="checkbox" name=""> This is my regular address</label>
-                    </div>
+                    <p id="phone_errorMssg" class="errorMsg hideElement">Write a 9 number phone.</p>
+                    <label><input type="checkbox" id='regularAddress' name="regularAddress"> This is my regular address</label>
                     </form>
         </section>
 
@@ -179,12 +159,13 @@
                 <article>
                     <h3>Shipping type</h3>
                     <form action="" id="shipping" class="form__shipping">
-                        <input type="radio" id="option__free-shipping" name="shipping-type" value="free">
-                        <label for="option__free-shipping">Free (72h)</label><br>
-                        <input type="radio" id="option__extra-shipping" name="shipping-type" value="extra">
-                        <label for="option__extra-shipping">Extra (48h) <b>4.99€</b></label><br>
-                        <input type="radio" id="option__premium-shipping" name="shipping-type" value="premium">
-                        <label for="option_premium_shipping">Premium (24h) <b>9.99€</b></label>
+                        <label for="option__free-shipping"><input type="radio" id="option__free-shipping" name="shipping-type" value="free">
+                            Free
+                            (72h)</label>
+                        <label for="option__extra-shipping"><input type="radio" id="option__extra-shipping" name="shipping-type" value="extra">
+                            Extra (48h) <b>4.99€</b></label>
+                        <label for="option_premium_shipping"><input type="radio" id="option__premium-shipping" name="shipping-type"
+                                value="premium"> Premium (24h) <b>9.99€</b></label>
                     </form>
                 </article>
                 <article>
@@ -205,11 +186,9 @@
 
         <section id="finish-page" class="section hideElement"></section>
         <footer class="footer">
-            <div>
-                <div>
+            <div id="btnContainer" class="hideElement">
                     <button id="clearForm" class="submitBtn">Clear Form</button>
                     <button id="next" class="submitBtn">Next</button>
-                </div>
             </div>
 
         </footer>
