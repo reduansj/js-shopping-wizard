@@ -19,6 +19,9 @@ const country = document.getElementById('country');
 const phone = document.getElementById('phone');
 const productColorText = document.getElementById('productColor')
 const giftInformationContainer = document.getElementById('gift-information__container')
+const MAX_STEPS = 4;
+let currentStep = 1;
+const progressBar = document.getElementById('progress-bar')
 
 //Product Data Information
 const productData = {
@@ -87,24 +90,24 @@ const inputStatus = {
     price: true,
   },
   'profile-page': {
-    userName: false,
-    email: false,
-    password: false,
-    confirmPassword: false,
+    userName: true,
+    email: true,
+    password: true,
+    confirmPassword: true,
   },
   'address-page': {
-    firstName: false,
-    lastName: false,
-    birthday: false,
-    address1: false,
-    postalCode: false,
-    phone: false,
+    firstName: true,
+    lastName: true,
+    birthday: true,
+    address1: true,
+    postalCode: true,
+    phone: true,
   },
   'shipping-page': {
-    type: false,
+    type: true,
   },
   'finish-page': {
-    termsConditions: false,
+    termsConditions: true,
   }
 }
 
@@ -363,12 +366,84 @@ function clearInputs() {
 }
 
 //Identifies activeSection and check if all inputs are OK
-function nextSection() {
+function nextSection(e) {
   const activeSection = document.querySelector('[activeSection]');
+
+  if (e.target.id === 'productBuy') {
+    console.log(e.target.classList)
+    progressBar.classList.toggle("hideElement")
+  } else {
+    bullets[currentStep - 1].classList.add('completed');
+    currentStep += 1;
+    previousBtn.disabled = false;
+    if (currentStep === MAX_STEPS) {
+      nextSectionBtn.disabled = true;
+      finishBtn.disabled = false;
+    }
+  }
   if (Object.values(inputStatus[activeSection.id]).every(input => input === true)) {
     activeSection.classList.toggle('hideElement');
     activeSection.nextElementSibling.classList.toggle('hideElement');
     activeSection.removeAttribute('activeSection')
     activeSection.nextElementSibling.setAttribute('activeSection', '')
   }
+
 }
+
+const imageMoveZoom = document.getElementById("mainProductImage")
+
+//Event on mouse move 
+imageMoveZoom.addEventListener("mousemove", (e) => {
+  // This gives you the position of the image on the page
+  var bbox = e.target.getBoundingClientRect();
+
+  // Then we measure how far into the image the mouse is in both x and y directions
+  var mouseX = e.clientX - bbox.left;
+  var mouseY = e.clientY - bbox.top;
+
+  // Then work out how far through the image as a percentage the mouse is
+  var xPercent = (mouseX / bbox.width) * 100;
+  var yPercent = (mouseY / bbox.height) * 100;
+
+  // Then we change the `transform-origin` css property on the image to center the zoom effect on the mouse position
+  //let c = imageZoom.getContext('2d');
+  //c.translate(0, 0);
+  e.target.style.transformOrigin = xPercent+ '% ' + yPercent + '%';
+  // We add the '%' units to make sure the string looks exactly like the css declaration it becomes.
+
+});
+
+
+
+//Progres bar
+
+const previousBtn = document.getElementById('previousBtn')
+const bullets = [...document.querySelectorAll('.bullet')]
+const finishBtn = document.getElementById('finishBtn')
+
+nextSectionBtn.addEventListener('click',  ()  =>  {
+	bullets[currentStep  -  1].classList.add('completed');
+	currentStep  +=  1;
+	previousBtn.disabled  =  false;
+	if  (currentStep  ===  MAX_STEPS)  {
+		nextSectionBtn.disabled  =  true;
+		finishBtn.disabled  =  false;
+	}
+	
+});
+
+
+previousBtn.addEventListener('click',  ()  =>  {
+	bullets[currentStep  -  2].classList.remove('completed');
+	currentStep  -=  1;
+	nextSectionBtn.disabled  =  false;
+	finishBtn.disabled  =  true;
+	if  (currentStep  ===  1)  {
+		previousBtn.disabled  =  true;
+	}
+});
+
+//refrescar pag cuando le damos a finish
+finishBtn.addEventListener('click',  ()  =>  {
+	location.reload();
+});

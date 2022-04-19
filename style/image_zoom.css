@@ -1,3 +1,5 @@
+/*On Click image*/
+
 .modal {
     display: none;/* Hidden by default */
     position: fixed;/* Stay in place */
@@ -61,4 +63,30 @@
     .modal-content {
         width: 100%;
     }
+}
+
+/*On hover image*/
+.zoom:hover{
+  transform: scale(1.8);
+  cursor: zoom-in;
+  transition: transform 25ms;
+}
+.zoom{
+  transform: scale(1);
+  cursor: zoom-out;
+  transition: transform 500ms;
+}
+
+.imageMoveZoom{
+  overflow: hidden;
+  height: 100%;
+  width: 75%;
+  margin-left: 20px;
+  display: flex;
+}
+
+/*Scroll with arrows*/
+.arrow-up{
+  position:absolute;
+  top:0 ;
 }

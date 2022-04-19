@@ -13,5 +13,5 @@ section{
 
 
 .hideElement{
-    display:none;
+    display:none !important;
 }

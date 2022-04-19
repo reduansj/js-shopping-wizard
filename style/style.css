@@ -15,6 +15,10 @@
 /*Image Zoom*/
 @import './image_zoom.css';
 
+/*PROGRESS BAR*/
+
+@import './progress_bar.css';
+
 body,
 * {
     margin: 0;
@@ -31,7 +35,7 @@ body,
     justify-content: flex-start;
 }
 
-.header {
+header {
     background-color: lightgrey;
     height: 100px;
     width: 100%;
@@ -44,12 +48,16 @@ body,
     width: 50%;
     position: sticky;
     top: 0;
+    margin-top: 25px;
+    height: 600px;
 }
 
 .productViewMiniaturesContainer {
     width: 20%;
     padding-left: 5px;
     padding-right: 5px;
+    height: 100%;
+    overflow: hidden;
 }
 
 .miniatureProductImage {
@@ -64,19 +72,19 @@ body,
 }
 
 .mainProductImage {
-    width: 80%;
-    height: max-content;
+    width: 100%;
+    /*height: max-content;*/
+    height: 100%;
     object-fit: contain;
-    border: 1px solid black;
     cursor:zoom-in;
+    align-self: center;
 }
 
 .productInformationSelection{
-    margin-left: 10%;
+    margin-left: 5%;
     width: 50%;
     display: block;
     height: 1500px;
-    border: 1px solid blue;
 }
 
 .productColorSelectorContainer{
@@ -188,10 +196,11 @@ box-shadow: 3px 0px 30px rgba(163,163,163, 1);
         margin-right: auto;
         max-width: 1216px;
     }}
-    
+
 @media only screen and (max-width: 768px) {
     .productViewMiniaturesContainer {
         display: none;
+        height: auto;
     }
 
     .mainProductImage {
@@ -200,5 +209,12 @@ box-shadow: 3px 0px 30px rgba(163,163,163, 1);
 
     .productInformationSelection {
         margin-left: 1rem;
+    }
+
+    .imageMoveZoom{
+        margin-left: 0;
+        width: 100%;
+        height: max-content;
+        align-self: flex-start;
     }
 }

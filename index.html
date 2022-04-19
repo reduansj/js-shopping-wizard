@@ -14,10 +14,33 @@
 
 <body>
     <main id="main" class="main-container">
-        <nav class="header">Header</nav>
+        <header id="header">
+            <nav id ="progress-bar" class="stepProgressBar hideElement">
+                <div class="step">
+                    <p class="step-text">Profile</p>
+                    <div class="bullet"></div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Address</p>
+                    <div class="bullet"></div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Shiping</p>
+                    <div class="bullet"></div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Finish</p>
+                    <div class="bullet "></div>
+                </div>
+            </nav>
+        </header>
         <section activeSection id="product-page" class="section">
             <div class="productImagesContainer">
                 <div miniatureProductImage class="productViewMiniaturesContainer" id="productViewMiniaturesContainer">
+                    <i class="fa-solid fa-chevron-up"></i>
+                    <span class="material-icons-outlined">
+                        expand_less
+                        </span>
                     <img default src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="miniatureMain"
                         class="miniatureProductImage miniatureProductImageSelected" id="miniatureProductImageSelected">
                     <img src="./assets/Products/GM500-black/GM500-black-top.jpg" alt="miniatureTop"
@@ -30,9 +53,13 @@
                         class="miniatureProductImage">
                     <img src="./assets/Products/GM500-black/GM500-black-zoom.jpg" alt="miniatureZoom"
                         class="miniatureProductImage">
+                        <i class="fa-solid fa-chevron-down arrow-down"></i>
                 </div>
-                <img class="mainProductImage" id="mainProductImage"
-                    src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="Product Image">
+
+                <div class="imageMoveZoom">
+                    <img class="mainProductImage zoom" id="mainProductImage"
+                        src="./assets/Products/GM500-black/GM500-black-main.jpg" alt="Product Image">
+                </div>
             </div>
             <div class="productInformationSelection">
                 <h1>New Balance</h1>
@@ -212,8 +239,10 @@
         <footer class="footer">
             <div>
                 <div>
+                    <button id="previousBtn">Previous</button>
                     <button id="clearForm" class="submitBtn">Clear Form</button>
                     <button id="next" class="submitBtn">Next</button>
+                    <button id="finishBtn">Finish</button>
                 </div>
             </div>
         </footer>
