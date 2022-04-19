@@ -1,7 +1,7 @@
 //global variable definition
 let mainProductImage = document.getElementById('mainProductImage')
-let miniatureActiveImage = document.querySelectorAll('[default]')[0] //Select element by existing attribute
-let colorActiveImage = document.querySelectorAll('[default]')[1]
+// let miniatureActiveImage = document.querySelectorAll('[default]')[0] //Select element by existing attribute
+// let colorActiveImage = document.querySelectorAll('[default]')[1]
 const productViewMiniaturesContainer = document.getElementById('productViewMiniaturesContainer')
 const productPrice = document.getElementById('productPrice')
 const productDescription = document.getElementById("productDescription")
@@ -26,6 +26,27 @@ const progressBar = document.getElementById('progress-bar')
 const previousBtn = document.getElementById('previousBtn')
 const bullets = [...document.querySelectorAll('.bullet')]
 const finishBtn = document.getElementById('finishBtn')
+// let mainProductImage = document.getElementById("mainProductImage");
+let [miniatureActiveImage, colorActiveImage] =
+  document.querySelectorAll("[default]");
+// const productViewMiniaturesContainer = document.getElementById(
+//   "productViewMiniaturesContainer"
+// );
+// const productPrice = document.getElementById("productPrice");
+// const productDescription = document.getElementById("productDescription");
+// const nextSectionBtn = document.getElementById("next");
+// const clearInput = document.getElementById("clearForm");
+// const formInputs = document.querySelectorAll("#main input");
+// const buyBtn = document.getElementById("productBuy");
+// const productSizeInput = document.querySelector("select#productSize");
+// const shippingInput = document.getElementById("shipping");
+// const actualDate = new Date();
+// const outputDeliveryDate = document.getElementById("output__delivery-date");
+// const checkboxGiftMessage = document.querySelector("input[name='gift-check']");
+// let inputGiftMessage = document.getElementById("input__gift-message");
+// const country = document.getElementById("country");
+// const phone = document.getElementById("phone");
+const timeLeftMessg = document.getElementById("timeLeft");
 
 //Product Data Information
 const productData = {
@@ -93,27 +114,47 @@ const inputStatus = {
     size: false,
     price: true,
   },
-  'profile-page': {
-    userName: true,
-    email: true,
-    password: true,
-    confirmPassword: true,
+  "profile-page": {
+    userName: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
   },
-  'address-page': {
-    firstName: true,
-    lastName: true,
-    birthday: true,
-    address1: true,
-    postalCode: true,
-    phone: true,
+  "address-page": {
+    firstName: false,
+    lastName: false,
+    birthday: false,
+    address1: false,
+    postalCode: false,
+    phone: false,
   },
-  'shipping-page': {
-    type: true,
+  "shipping-page": {
+    type: false,
   },
-  'finish-page': {
-    termsConditions: true,
-  }
-}
+  "finish-page": {
+    termsConditions: false,
+  },
+};
+
+const saveInputData = {
+  "profile-page": {
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  },
+  "address-page": {
+    firstName: "",
+    lastName: "",
+    birthday: "",
+    address1: "",
+    address2: "",
+    country: "",
+    postalCode: "",
+    phone: "",
+    regularAddress: "",
+  },
+};
 
 const shippingProp = {
   free: {
@@ -122,13 +163,13 @@ const shippingProp = {
   },
   extra: {
     time: 48,
-    cost: 4.99
+    cost: 4.99,
   },
   premium: {
     time: 24,
     cost: 9.99,
-  }
-}
+  },
+};
 
 const purchaseSummary = {
   color: 'black',
@@ -139,28 +180,15 @@ const purchaseSummary = {
   deliveryDate: null,
   giftMessage: null,
   giftSrc: null,
-}
+};
 
 const countryCodes = {
-  Spain: '+34-',
-  Andorra: '+367-',
-  Germany: '+49-',
-  France: '+33-',
-  Greece: '+30-',
-}
-
-//RegExr to test all inputs
-const checkInputexpression = {
-  userName: /^[A-Z][A-Za-z0-9_]{4,20}/g,
-  name: /^[A-Z][A-Za-z]{4,20}/g,
-  password: /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])[^\s]{8,16}$/g,
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-z]+$/g,
-  address: /^[a-zA-z\s(\d{2})]{5,50}/g,
-  birthday: /^(\d{4})-(\d{2})-(\d{2})/g,
-  zip: /^[0-9]{5}$/g,
-  phone: /^([\+][0-9]{2,3})-[0-9]{9}$/g,
-  country: /[A-Z][A-Za-z]+/g,
-}
+  Spain: "+34",
+  Andorra: "+367",
+  Germany: "+49",
+  France: "+33",
+  Greece: "+30",
+};
 
 //EVENT LISTENERS DECLARATION
 
@@ -289,84 +317,104 @@ function changeAllImagesPath(color, miniatureImages) {
   }
 }
 
+//RegExr to test all inputs
+const checkInputexpression = {
+  userName: /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/g,
+  firstName: /^(?=.{0,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z]+(?<![_.])$/g,
+  lastName: /^(?=.{0,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z]+(?<![_.])$/g,
+  password:
+    /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])[^\s]{8,16}$/g,
+  email: /^(?=.{0,50}$)[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-z]+$/g,
+  address1: /^(?=.{0,50}$)[a-zA-z0-9\s]+$/g,
+  birthday: /^(\d{4})-(\d{2})-(\d{2})/g,
+  postalCode: /^[0-9]{0,5}$/g,
+  phone: /^(?:[\+][0-9]{2,3})?[0-9]{9}$/g,
+  country: /[A-Z][A-Za-z]+/g,
+};
+
+// Verifys the inputs and set the requirment
 function updateInputs(e) {
-  switch (e.target.id) {
-    case 'userName':
-      validateInput(checkInputexpression.userName, e.target)
-      break;
-    case 'email':
-      validateInput(checkInputexpression.email, e.target)
-      break;
-    case 'password':
-      validateInput(checkInputexpression.password, e.target);
-      matchPassword(e.target)
-      break;
-    case 'confirmPassword':
-      matchPassword(e.target)
-      break;
-    case 'firstName':
-      validateInput(checkInputexpression.name, e.target)
-      break;
-    case 'lastName':
-      validateInput(checkInputexpression.name, e.target)
-      break;
-    case 'birthday':
-      validateInput(checkInputexpression.birthday, e.target);
-      break;
-    case 'address1':
-      validateInput(checkInputexpression.address, e.target)
-      break;
-    case 'postalCode':
-      validateInput(checkInputexpression.zip, e.target)
-      break;
-    case 'phone':
-      validateInput(checkInputexpression.phone, e.target);
-      break;
+  const currentInput = e.target;
+  const activeSectionId = getActiveSectionId();
+  const isShippingSection = activeSectionId === "shipping-page";
+
+  if (isShippingSection) {
+    return;
   }
-}
+  if (
+    currentInput.id !== "confirmPassword" &&
+    currentInput.id !== "address2" &&
+    currentInput !== "regularAddress"
+  ) {
+    const isValid = new RegExp(checkInputexpression[currentInput.id]).test(
+      currentInput.value
+    );
+    inputStatus[currentInput.closest("section").id][currentInput.id] = isValid;
 
-function addCountryCode() {
-  phone.value = countryCodes[country.value];
-}
-
-//Verifies if input is OK
-function validateInput(exp, input) {
-  const validation = exp.test(input.value)
-  inputStatus[input.closest('section').id][input.id] = validation;
-  if (validation) {
-    document.getElementById(`${input.id}`).classList.add("correctInput");
-    document.getElementById(`${input.id}`).classList.remove("requiredInput");
-    document.getElementById(`${input.id}_paragraph`).classList.add("hideElement");
-  } else {
-    document.getElementById(`${input.id}`).classList.remove("correctInput");
-    document.getElementById(`${input.id}`).classList.add("requiredInput");
-    document.getElementById(`${input.id}_paragraph`).classList.remove("hideElement");
+    if (!currentInput.value.length == 0 && !isValid) {
+      document
+        .getElementById(`${currentInput.id}`)
+        .classList.add("requiredInput");
+      document
+        .getElementById(`${currentInput.id}_errorMssg`)
+        .classList.remove("hideElement");
+      inputStatus[currentInput.closest("section").id][currentInput.id] =
+        isValid;
+    } else {
+      document
+        .getElementById(`${currentInput.id}`)
+        .classList.remove("requiredInput");
+      document
+        .getElementById(`${currentInput.id}_errorMssg`)
+        .classList.add("hideElement");
+    }
+  }
+  if (currentInput.id == "confirmPassword" || currentInput.id == "password") {
+    matchPassword(currentInput);
   }
 }
 
 //Verifies if password confirmation is OK
 function matchPassword(input) {
-  const password = document.getElementById('password');
-  const confirmPassword = document.getElementById('confirmPassword');
-  if (!confirmPassword.value.length == 0) {
-    if (password.value !== confirmPassword.value) {
-      confirmPassword.classList.remove("correctInput");
-      confirmPassword.classList.add("requiredInput");
-      inputStatus[input.closest('section').id][input.id] = false;
-    } else {
-      confirmPassword.classList.add("correctInput");
-      confirmPassword.classList.remove("requiredInput");
-      inputStatus[input.closest('section').id][input.id] = true;
-    }
+  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirmPassword");
+  if (
+    !confirmPassword.value.length == 0 &&
+    password.value !== confirmPassword.value
+  ) {
+    confirmPassword.classList.add("requiredInput");
+    inputStatus[input.closest("section").id][input.id] = false;
+    document
+      .getElementById(`${input.id}_matchError`)
+      .classList.remove("hideElement");
+  } else {
+    document
+      .getElementById(`${input.id}_matchError`)
+      .classList.add("hideElement");
+    confirmPassword.classList.remove("requiredInput");
   }
+  if (password.value == confirmPassword.value) {
+    inputStatus[input.closest("section").id][input.id] = true;
+  }
+}
+
+//Add country code to the phone input
+function addCountryCode() {
+  phone.value = countryCodes[country.value];
 }
 
 //Reset input values
 function clearInputs() {
-  profileInputs.forEach(input => {
-    input.classList.remove("correctInput", "requiredInput");
-    input.value = '';
-    console.log(input)
+  const formId = getActiveSectionId();
+  const formInputs = document.querySelectorAll(`#${formId} input`);
+  formInputs.forEach((input) => {
+    input.classList.remove("correctInput");
+    input.classList.remove("requiredInput");
+    document
+      .getElementById(`${input.id}_errorMssg`)
+      .classList.add("hideElement");
+    input.value = "";
+    input.checked = false;
   });
 }
 
@@ -439,3 +487,72 @@ previousBtn.addEventListener('click',  ()  =>  {
 finishBtn.addEventListener('click',  ()  =>  {
 	location.reload();
 });
+function nextSection() {
+  const activeSection = document.querySelector("[active-section]");
+  if (
+    Object.values(inputStatus[activeSection.id]).every(
+      (input) => input === true
+    )
+  ) {
+    activeSection.classList.toggle("hideElement");
+    activeSection.nextElementSibling.classList.toggle("hideElement");
+    activeSection.removeAttribute("active-section");
+    activeSection.nextElementSibling.setAttribute("active-section", "");
+  }
+  document.getElementById("btnContainer").classList.remove("hideElement");
+  if (activeSection.id == "shipping-page") {
+    document.getElementById("btnContainer").classList.add("hideElement");
+  }
+}
+
+//Get active section id
+const getActiveSectionId = () => {
+  const activeSection = document.querySelector("[active-section]");
+  return activeSection.id;
+};
+
+function getFormData() {
+  const formId = getActiveSectionId();
+  const formInputs = document.querySelectorAll(`#${formId} input`);
+  if (formId === "shipping-page") {
+    return;
+  }
+  if (formId === "address-page") {
+    console.log(countryCodes[country.value]);
+  }
+
+  formInputs.forEach((input) => {
+    if (input.id !== "regularAddress") {
+      saveInputData[formId][input.id] = input.value;
+    } else {
+      if (input.checked) {
+        saveInputData[formId][input.id] = "true";
+      }
+    }
+  });
+  console.log(saveInputData[formId]);
+}
+
+//Timer
+const timer = (duration = 50, every = 10) => {
+  const showTimeLeft = document.getElementById("timeRemainder");
+  const end = new Date();
+  end.setSeconds(end.getSeconds() + duration);
+
+  const intervalId = setInterval(() => {
+    const now = new Date();
+    const timeLeft = end.getSeconds() - now.getSeconds();
+
+    timeLeftMessg.textContent = `hurry up your time  ${timeLeft}`;
+    showTimeLeft.classList.toggle("hideEleemnt");
+
+    setTimeout(() => {
+      showTimeLeft.classList.toggle("hideElement");
+    }, 5 * 1000);
+
+    if (now > end) {
+      clearInterval(intervalId);
+      location.reload();
+    }
+  }, every * 1000);
+};

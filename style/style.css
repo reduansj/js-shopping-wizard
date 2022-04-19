@@ -8,6 +8,9 @@
 
 /* SECTION FORMAT */
 @import './section_style.css';
+/* Font Family */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,700;1,300&display=swap');
 
 /*IMG INPUT*/
 @import './image_input.css';
@@ -24,7 +27,9 @@ body,
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*Add font family*/
+    /* font-family: 'Chakra Petch', sans-serif; */
+    font-family: 'Chakra Petch',
+    sans-serif;
 }
 
 .main-container{
@@ -123,45 +128,36 @@ header {
 	padding: 0 40px 0 10px;
 	transition: .3s ease all;
     background-color: rgba(216, 216, 201, 0.719);
-  }
-  .requiredInput{
-    display:flex;
-    border-color: red;
-    background-color: rgba(255, 17, 0, 0.377);
-  }
-  .correctInput{
-    display:flex;
-    border-color: rgb(17, 243, 17);
-    background-color: rgba(149, 247, 2, 0.39);
-  }
-  .input-error{
-    display: none;
-  }
-
+    cursor: pointer;
+  
+}
 form{
-display: flex;
-flex-direction: column;
-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+label {
+    display: block;
+        font-weight: bold;
+        cursor: pointer;
+        }
+
+/* Input requirements errors  */
+.errorMsg {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+    
+    .requiredInput {
+        display: flex;
+        border-color: red;
+        background-color: rgba(255, 17, 0, 0.377);
+    }
+    
+    .input-error {
+        display: none;
 }
 
-.label {
-display: block;
-font-weight: 700;
-padding: 10px;
-cursor: pointer;
-}
-
-
-.input:focus {
-border: 3px solid #0075FF;
-outline: none;
-box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
-}
-
-.errorMsg{
-font-size: 1.5rem;
-margin-bottom: 0;
-}
 
 /*FOOTER BUTTONS*/
 
@@ -218,3 +214,19 @@ box-shadow: 3px 0px 30px rgba(163,163,163, 1);
         align-self: flex-start;
     }
 }
+
+.timeRemainder {
+    /* position: absolute; */
+    background-color: #478022;
+    width: 20%;
+    top: 10px;
+    right: 10rem;
+    left: 10rem;
+    border-radius: 15px;
+    color: black;
+    font-size: 1.3rem;
+    text-align: center;
+    /* overflow: auto; */
+
+}
+

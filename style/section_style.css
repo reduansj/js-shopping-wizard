@@ -8,10 +8,11 @@ section{
     flex-direction: row;
 }
 .form-pages {
+    width: 30%;
     flex-direction: column;
 }
-
 
 .hideElement{
     display:none !important;
 }
+
