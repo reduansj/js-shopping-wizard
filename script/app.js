@@ -222,17 +222,35 @@ document.getElementById("input__gift-image").addEventListener('input', e => cons
 //Declare events
 clearInput.addEventListener("click", clearInputs);
 profileInputs.forEach((input) => {
-  input.addEventListener('input', updateInputs);
+  input.addEventListener("input", updateInputs);
 });
-buyBtn.addEventListener('click', nextSection);
-nextSectionBtn.addEventListener('click', nextSection);
-country.addEventListener('click', addCountryCode);
-productSizeInput.addEventListener('change', e => {purchaseSummary.size = e.target.value; inputStatus["product-page"].size = true})
-shippingInput.addEventListener('change', e => {
+country.addEventListener("click", addCountryCode);
+productSizeInput.addEventListener("change", (e) => {
+  purchaseSummary.size = e.target.value;
+  inputStatus["product-page"].size = true;
+});
+shippingInput.addEventListener("change", (e) => {
   purchaseSummary.shipping = e.target.value;
-  deliveryDateEstimation(e)
-})
-checkboxGiftMessage.addEventListener('click', () => {inputGiftMessage.disabled = !inputGiftMessage.disabled; inputGiftMessage.value = ''; giftInformationContainer.classList.toggle('hideElement')})
+  deliveryDateEstimation(e);
+});
+checkboxGiftMessage.addEventListener("click", () => {
+  inputGiftMessage.disabled = !inputGiftMessage.disabled;
+  inputGiftMessage.value = "";
+  giftInformationContainer.classList.toggle("hideElement");
+});
+formInputs.forEach((input) => {
+  input.addEventListener("change", (e) => {
+    updateInputs(e);
+  });
+});
+buyBtn.addEventListener("click", () => {
+  timer();
+  nextSection();
+});
+nextSectionBtn.addEventListener("click", () => {
+  getFormData();
+  nextSection();
+});
 
 //Zoom Image
 
