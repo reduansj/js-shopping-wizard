@@ -30,14 +30,14 @@ color:  #000000;
 }
 
 
-.bullet.completed  {
+.completed  {
 	color:  white;
 	background-color:  #d66e19;
 }
 
 
 
-.bullet.completed::after {
+.completed::after {
 	content: '';
 	position: absolute;
 	right: -60px;
