@@ -405,7 +405,7 @@ function addCountryCode() {
 function clearInputs() {
   const formId = getActiveSectionId();
   const formInputs = document.querySelectorAll(`#${formId} input`);
-
+  outputDeliveryDate.innerHTML = "";
   formInputs.forEach((input) => {
     if (input.type !== "checkbox" && input.type !== "radio") {
       input.classList.remove("correctInput");
@@ -495,7 +495,7 @@ function getFormData() {
 }
 
 //Timer for end of purchase
-const timer = (duration = 5, every = 60) => {
+const timer = (duration = 1, every = 10) => {
   const showTimeLeft = document.getElementById("timeRemainder");
   const end = new Date();
   end.setMinutes(end.getMinutes() + duration);
@@ -508,11 +508,14 @@ const timer = (duration = 5, every = 60) => {
     const now = new Date();
     const timeLeft = end.getMinutes() - now.getMinutes();
     timeLeftMessg.innerHTML = `Limit time for the purchase is ${timeLeft} minutes`;
+    console.log(timeLeft);
     //Show time left
     showTimeLeft.classList.toggle("hideElement");
+
     setTimeout(() => {
       showTimeLeft.classList.toggle("hideElement");
     }, 5000);
+
     if (now > end) {
       clearInterval(intervalId);
       location.reload();

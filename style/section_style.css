@@ -16,3 +16,8 @@ section{
     display:none !important;
 }
 
+.shipping-page {
+    width: 30%;
+    flex-direction: column;
+    justify-content: center;
+}

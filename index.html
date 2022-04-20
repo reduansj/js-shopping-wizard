@@ -135,7 +135,7 @@
                     </form>
         </section>
         <section id="address-page" class=" addresssection form-pages hideElement">
-            <h2>ADDRESS</h2>
+            <h2>Address</h2>
             <form action="" id="address" class="adress-form">
                     <label for="firstName">First name:</label>
                     <input type="text" id="firstName" class="input">
@@ -169,13 +169,9 @@
                     <label><input type="checkbox" id='regularAddress' name="regularAddress"> This is my regular address</label>
                     </form>
         </section>
-        <section id="shipping-page" class="section hideElement">
-            <article>
-                <header>
-                    <h2>Shipping</h2>
-                </header>
-                <article>
-                    <h3>Shipping type</h3>
+        <section id="shipping-page" class="shipping-page section hideElement">
+            <h2>Shipping</h2><br>
+            <h3>Shipping type</h3><br>
                     <form action="" id="shipping" class="form__shipping">
                         <label for="option__free-shipping"><input type="radio" id="option__free-shipping" name="shipping-type" value="free">
                             Free
@@ -184,18 +180,14 @@
                             Extra (48h) <b>4.99€</b></label>
                         <label for="option_premium_shipping"><input type="radio" id="option__premium-shipping" name="shipping-type"
                                 value="premium"> Premium (24h) <b>9.99€</b></label>
-                    </form>
-                </article>
-                <article>
+                    </form><br>
+
                     <div class="container__delivery-date" id="container__delivery-date">
                         <h3>Your order will arrive:</h3>
-                        <h4>ESTIMATE DELIVERY DATE:</h4>
+                        <h4>ESTIMATE DELIVERY DATE:</h4><br>
                         <p id="output__delivery-date"></p>
                     </div>
-                </article>
-                <article>
-                    <input type="checkbox" name="gift-check">
-                    <label for="gift-check">Is it a gift?</label>
+        <label for="gift-check"><input type="checkbox" name="gift-check"> Is it a gift?</label>
                     <div id="gift-information__container" class="hideElement">
                         <p>Gift message</p>
                         <input id="input__gift-message" type="textarea" disabled>
@@ -204,8 +196,6 @@
                         <label for="input__gift-image">
                             <i class="material-icons">add_photo_alternate</i>
                     </div>
-                </article>
-            </article>
         </section>
         <section id="finish-page" class="section_finish hideElement">
             
@@ -256,7 +246,7 @@
         </section>
         <footer class="footer">
             <div id="btnContainer" class="btnContainer hideElement">
-                    <button id="clearForm" class="submitBtn">Clear Form</button>
+                    <button id="clearForm" class="submitBtn">Clear</button>
                     <button id="next" class="submitBtn">Next</button>
             </div>
         </footer>
