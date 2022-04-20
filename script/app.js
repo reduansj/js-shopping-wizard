@@ -402,41 +402,48 @@ function addCountryCode() {
 function clearInputs() {
   const formId = getActiveSectionId();
   const formInputs = document.querySelectorAll(`#${formId} input`);
+
   formInputs.forEach((input) => {
-    input.classList.remove("correctInput");
-    input.classList.remove("requiredInput");
-    document
-      .getElementById(`${input.id}_errorMssg`)
-      .classList.add("hideElement");
-    input.value = "";
-    input.checked = false;
+    if (input.type !== "checkbox" && input.type !== "radio") {
+      input.classList.remove("correctInput");
+      input.classList.remove("requiredInput");
+      document
+        .getElementById(`${input.id}_errorMssg`)
+        .classList.add("hideElement");
+      input.value = "";
+    } else {
+      input.checked = false;
+    }
   });
 }
 
 //Identifies activeSection and check if all inputs are OK
 function nextSection() {
-  const activeSection = document.querySelector('[active-section]');
-  
-  if (Object.values(inputStatus[activeSection.id]).every(input => input === true)) {
-    bullets[currentStep -1].classList.add('completed');
+  const activeSection = document.querySelector("[active-section]");
+
+  if (
+    Object.values(inputStatus[activeSection.id]).every(
+      (input) => input === true
+    )
+  ) {
+    bullets[currentStep - 1].classList.add("completed");
     if (activeSection.id == "shipping-page") {
       document.getElementById("btnContainer").classList.add("hideElement");
-    } else if (activeSection.id === 'product-page') {
-      btnContainer.classList.toggle('hideElement')
-      progressBar.classList.toggle("hideElement")
+    } else if (activeSection.id === "product-page") {
+      btnContainer.classList.toggle("hideElement");
+      progressBar.classList.toggle("hideElement");
     }
     currentStep += 1;
-    }
-    activeSection.classList.toggle('hideElement');
-    activeSection.nextElementSibling.classList.toggle('hideElement');
-    activeSection.removeAttribute('active-section')
-    activeSection.nextElementSibling.setAttribute('active-section', '')
   }
+  activeSection.classList.toggle("hideElement");
+  activeSection.nextElementSibling.classList.toggle("hideElement");
+  activeSection.removeAttribute("active-section");
+  activeSection.nextElementSibling.setAttribute("active-section", "");
+}
 
+const imageMoveZoom = document.getElementById("mainProductImage");
 
-const imageMoveZoom = document.getElementById("mainProductImage")
-
-//Event on mouse move 
+//Event on mouse move
 imageMoveZoom.addEventListener("mousemove", (e) => {
   // This gives you the position of the image on the page
   var bbox = e.target.getBoundingClientRect();
@@ -452,9 +459,8 @@ imageMoveZoom.addEventListener("mousemove", (e) => {
   // Then we change the `transform-origin` css property on the image to center the zoom effect on the mouse position
   //let c = imageZoom.getContext('2d');
   //c.translate(0, 0);
-  e.target.style.transformOrigin = xPercent+ '% ' + yPercent + '%';
+  e.target.style.transformOrigin = xPercent + "% " + yPercent + "%";
   // We add the '%' units to make sure the string looks exactly like the css declaration it becomes.
-
 });
 
 //Get active section id
@@ -485,23 +491,25 @@ function getFormData() {
   console.log(saveInputData[formId]);
 }
 
-//Timer
-const timer = (duration = 50, every = 10) => {
+//Timer for end of purchase
+const timer = (duration = 5, every = 60) => {
   const showTimeLeft = document.getElementById("timeRemainder");
   const end = new Date();
-  end.setSeconds(end.getSeconds() + duration);
+  end.setMinutes(end.getMinutes() + duration);
 
   const intervalId = setInterval(() => {
+    const activeSectionId = getActiveSectionId();
+    if (activeSectionId === "finish-page") {
+      clearInterval(intervalId);
+    }
     const now = new Date();
-    const timeLeft = end.getSeconds() - now.getSeconds();
-
-    timeLeftMessg.textContent = `hurry up your time  ${timeLeft}`;
-    showTimeLeft.classList.toggle("hideEleemnt");
-
+    const timeLeft = end.getMinutes() - now.getMinutes();
+    timeLeftMessg.innerHTML = `Limit time for the purchase is ${timeLeft} minutes`;
+    //Show time left
+    showTimeLeft.classList.toggle("hideElement");
     setTimeout(() => {
       showTimeLeft.classList.toggle("hideElement");
-    }, 5 * 1000);
-
+    }, 5000);
     if (now > end) {
       clearInterval(intervalId);
       location.reload();
