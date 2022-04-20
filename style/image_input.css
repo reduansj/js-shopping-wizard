@@ -1,0 +1,16 @@
+input[type="file"]{
+    display: none;
+}
+
+label[for="input__gift-image"]{
+    color: white;
+    height: 60px;
+    width: 250px;
+    background-color: #f5af09;
+    position: absolute;
+    margin: auto;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

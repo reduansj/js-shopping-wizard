@@ -1,0 +1,23 @@
+
+section{
+    height:auto;
+    max-width: 1216px;
+    margin-left: 18px;
+    margin-right: 18px;
+    display: flex;
+    flex-direction: row;
+}
+.form-pages {
+    width: 30%;
+    flex-direction: column;
+}
+
+.hideElement{
+    display:none !important;
+}
+
+.shipping-page {
+    width: 30%;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -1,0 +1,238 @@
+/*Main Page Style*/
+
+/*RESET*/
+@import './reset.css';
+
+/*TEXT FORMAT*/
+@import './textFormat.css';
+
+/* SECTION FORMAT */
+@import './section_style.css';
+/* Font Family */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,700;1,300&display=swap');
+
+/*IMG INPUT*/
+@import './image_input.css';
+
+/*Image Zoom*/
+@import './image_zoom.css';
+
+/*PROGRESS BAR*/
+
+@import './progress_bar.css';
+
+/*Finish Section*/
+
+@import './finish_page.css';
+
+body,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Chakra Petch',
+    sans-serif;
+}
+
+.main-container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+header {
+    background-color: lightgrey;
+    height: 100px;
+    width: 100%;
+}
+
+.productImagesContainer{
+    display: flex;
+    flex-direction: row;
+    height: max-content;
+    width: 50%;
+    position: sticky;
+    top: 0;
+    margin-top: 25px;
+    height: max-content;
+}
+
+.productViewMiniaturesContainer {
+    width: 15%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 15px;
+    height: max-content;
+    overflow: hidden;
+}
+
+.miniatureProductImage {
+    width: 100%;
+    border: 'none';
+    margin-bottom: 15px;
+}
+
+.miniatureProductImageSelected {
+    border: 1px solid black;
+    opacity: 0.5;
+}
+
+.mainProductImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor:zoom-in;
+    align-self: center
+}
+
+.productInformationSelection{
+    margin-left: 5%;
+    width: 50%;
+    display: block;
+    height: 1500px;
+}
+
+.productColorSelectorContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex;
+    flex-wrap: wrap;
+
+    border: 1px solid black;
+}
+
+.productColorSelectorImage {
+    width: 15%;
+    flex-basis: 20%;
+    cursor: pointer;
+    border: 'none';
+}
+
+.productColorSelectorImageSelected {
+    border: 1px solid black;
+}
+
+.productSizeSelector{
+    max-width: 50%;
+}
+
+/* PROFILE SECTION STARTS HERE */
+.input {
+    display:flex;
+    width: 100%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+    background-color: rgba(216, 216, 201, 0.719);
+    cursor: pointer;
+  
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+label {
+    display: block;
+        font-weight: bold;
+        cursor: pointer;
+        }
+
+/* Input requirements errors  */
+.errorMsg {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+    
+    .requiredInput {
+        display: flex;
+        border-color: red;
+        background-color: rgba(255, 17, 0, 0.377);
+    }
+    
+    .input-error {
+        display: none;
+}
+
+
+/*FOOTER BUTTONS*/
+
+footer {
+display: flex;
+justify-content: flex-end;
+padding: 3rem;
+margin: auto;
+height: 100px;
+width: 100%;
+}
+
+button {
+background-color: black;
+color: #fff;
+height: 45px;
+width: 100px;
+font-weight: bold;
+border-radius: 3px;
+cursor: pointer;
+transition: .1s ease all;
+}
+
+button:hover {
+box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+/*Change*/
+@media only screen and (min-width: 1280px){
+    .product-page{
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1216px;
+    }}
+
+@media only screen and (max-width: 768px) {
+    .productViewMiniaturesContainer {
+        display: none;
+        height: auto;
+    }
+
+    .mainProductImage {
+        width: 100%;
+    }
+
+    .productInformationSelection {
+        margin-left: 1rem;
+    }
+
+    .imageMoveZoom{
+        margin-left: 0;
+        width: 100%;
+        height: max-content;
+        align-self: flex-start;
+    }
+}
+
+.timeRemainder {
+background-color: #bbbbbb85;
+width: 10rem;
+height:5rem;
+top: 7rem;
+right: 1rem;
+border-radius: 15px;
+color: black;
+font-size: 1.3rem;
+font-weight: bold;
+text-align: center;
+position: absolute;
+}
+
+.btnContainer {
+    display: flex;
+}
+
