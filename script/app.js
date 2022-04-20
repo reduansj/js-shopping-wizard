@@ -29,6 +29,16 @@ const timeLeftMessg = document.getElementById("timeLeft");
 const modal = document.getElementById("myModal");
 const imageZoom = document.getElementById("image-zoom")
 const imageMoveZoom = document.getElementById("mainProductImage");
+//Finish page
+const purchase_size = document.getElementById('purchase_size');
+const purchase_img = document.getElementById('product_img');
+const purchase_color = document.getElementById('purchase_color');
+const purchase_time = document.getElementById('purchase_time');
+const order_shoe_price = document.getElementById('purchase_order_shoe');
+const order_shipping_type =document.getElementById('purchase_order_shipping');
+const order_total_price =document.getElementById('purchase_order_total');
+const checkbox_finish = document.getElementById('finishBtn');
+const terms = document.getElementById('accept_terms');
 
 //Product Data Information
 const productData = {
@@ -160,7 +170,7 @@ const purchaseSummary = {
   imgSrc: '',
   shipping: '',
   deliveryDate: '',
-    shippingPrice: 23
+  shippingPrice: '',
 }
 
 
@@ -199,13 +209,12 @@ document.getElementById("productColorSelectorContainer").addEventListener('mouse
   }
 })
 
-// finishBtn.addEventListener('click', nextSection);
-// document.getElementById("input__gift-image").addEventListener('input', e => console.log(e.target.value))
 clearInput.addEventListener("click", clearInputs);
 country.addEventListener("click", addCountryCode);
 productSizeInput.addEventListener("change", (e) => {
   purchaseSummary.size = e.target.value;
   inputStatus["product-page"].size = true;
+  purchase_size.textContent = `Size: ${e.target.value}`;
 });
 shippingInput.addEventListener("change", (e) => {
   purchaseSummary.shipping = e.target.value;
@@ -230,9 +239,10 @@ nextSectionBtn.addEventListener("click", (e) => {
   nextSection(e);
 });
 
+document.getElementById("close__image-zoom").addEventListener('click', () =>{
+  modal.style.display='none'
+})
 //Zoom Image
-
-
 mainProductImage.addEventListener('click', zoomImage)
 
 function zoomImage(){
@@ -240,9 +250,7 @@ function zoomImage(){
   imageZoom.src = mainProductImage.src
 }
 
-document.getElementById("close__image-zoom").addEventListener('click', () =>{
-  modal.style.display='none'
-})
+
 
 /*FUNCTIONS*/
 
@@ -258,7 +266,10 @@ function deliveryDateEstimation(e) {
   }
   const deliveryDate = new Date(actualDate.valueOf() + shippingTime).toLocaleDateString('en-EN', options)
   purchaseSummary.deliveryDate = deliveryDate
+  purchaseSummary.shippingPrice = shippingProp[e.target.value].cost
   outputDeliveryDate.innerHTML = `${deliveryDate} between <b>9:00h-15:00h</b>`
+  purchase_time.textContent = `Estimated delivery date: ${deliveryDate}`
+  order_total_price.textContent = `Total: ${parseFloat((parseFloat(purchaseSummary.price)+parseFloat(purchaseSummary.shippingPrice)).toFixed(2))}€`
 }
 
 //Hovers last mouseover image and change the src of mainProductImage
@@ -285,6 +296,8 @@ function colorProductImageClick(e) {
     purchaseSummary.price = price
     colorActiveImage.style.border = 'none'
     colorActiveImage = e.target
+    purchase_img.src = mainProductImage.src
+    purchase_color = color
   }
 }
 
@@ -444,25 +457,6 @@ function nextSection() {
   }
 }
 
-//Event on mouse move
-imageMoveZoom.addEventListener("mousemove", (e) => {
-  // This gives you the position of the image on the page
-  var bbox = e.target.getBoundingClientRect();
-
-  // Then we measure how far into the image the mouse is in both x and y directions
-  var mouseX = e.clientX - bbox.left;
-  var mouseY = e.clientY - bbox.top;
-
-  // Then work out how far through the image as a percentage the mouse is
-  var xPercent = (mouseX / bbox.width) * 100;
-  var yPercent = (mouseY / bbox.height) * 100;
-
-  // Then we change the `transform-origin` css property on the image to center the zoom effect on the mouse position
-  //let c = imageZoom.getContext('2d');
-  //c.translate(0, 0);
-  e.target.style.transformOrigin = xPercent + "% " + yPercent + "%";
-  // We add the '%' units to make sure the string looks exactly like the css declaration it becomes.
-});
 
 //Get active section id
 const getActiveSectionId = () => {
@@ -503,7 +497,6 @@ const timer = (duration = 5, every = 60) => {
     const now = new Date();
     const timeLeft = end.getMinutes() - now.getMinutes();
     timeLeftMessg.innerHTML = `Limit time for the purchase is ${timeLeft} minutes`;
-    console.log(timeLeft);
     //Show time left
     showTimeLeft.classList.toggle("hideElement");
 
@@ -518,18 +511,6 @@ const timer = (duration = 5, every = 60) => {
   }, every * 1000);
 };
 
-
-
-//Finish page
-const purchase_size = document.getElementById('purchase_size');
-const purchase_img = document.getElementById('product_img');
-const purchase_color = document.getElementById('purchase_color');
-const purchase_time = document.getElementById('purchase_time');
-const order_shoe_price = document.getElementById('purchase_order_shoe');
-const order_shipping_type =document.getElementById('purchase_order_shipping');
-const order_total_price =document.getElementById('purchase_order_total');
-
-
 function finishPageDisplay(){
   
   purchase_img.src = purchaseSummary.imgSrc;
@@ -543,25 +524,36 @@ function finishPageDisplay(){
 }
 finishPageDisplay()
 
-const checkbox_finish = document.getElementById('finishBtn');
-const terms = document.getElementById('accept_terms');
-
 checkbox_finish.addEventListener('click', () => {
-  console.log(terms.checked)
 
   if(terms.checked){
     document.getElementById('order_complete_msg').classList.remove('hideElement');
     document.getElementById('terms_msg').classList.add('hideElement');
     document.getElementById('terms_accept').classList.add('hideElement');
-
+    bullets[currentStep - 1].classList.add("completed");
 
   }else {
 		document.getElementById('terms_msg').classList.remove('hideElement');
-    
-  
   }
-
-
 })
 
+//Event on mouse move
+imageMoveZoom.addEventListener("mousemove", (e) => {
+  // This gives you the position of the image on the page
+  var bbox = e.target.getBoundingClientRect();
+
+  // Then we measure how far into the image the mouse is in both x and y directions
+  var mouseX = e.clientX - bbox.left;
+  var mouseY = e.clientY - bbox.top;
+
+  // Then work out how far through the image as a percentage the mouse is
+  var xPercent = (mouseX / bbox.width) * 100;
+  var yPercent = (mouseY / bbox.height) * 100;
+
+  // Then we change the `transform-origin` css property on the image to center the zoom effect on the mouse position
+  //let c = imageZoom.getContext('2d');
+  //c.translate(0, 0);
+  e.target.style.transformOrigin = xPercent + "% " + yPercent + "%";
+  // We add the '%' units to make sure the string looks exactly like the css declaration it becomes.
+});
 
