@@ -16,3 +16,11 @@ section{
     display:none !important;
 }
 
+.shipping-page{
+    min-width: 1216px;
+    flex-direction: column;
+}
+
+.header__shipping{
+    width: 100%;
+}
