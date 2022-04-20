@@ -155,14 +155,12 @@ const shippingProp = {
 
 const purchaseSummary = {
   color: 'black',
-  size: 78,
-  price: 45.99,
+  size: '',
+  price: '',
   imgSrc: '',
   shipping: '',
-  deliveryDate: 'dious',
-  giftMessage: null,
-  giftSrc: null,
-  shippingPrice: 23
+  deliveryDate: '',
+    shippingPrice: 23
 }
 
 
@@ -201,7 +199,7 @@ document.getElementById("productColorSelectorContainer").addEventListener('mouse
   }
 })
 
-finishBtn.addEventListener('click', nextSection);
+// finishBtn.addEventListener('click', nextSection);
 // document.getElementById("input__gift-image").addEventListener('input', e => console.log(e.target.value))
 clearInput.addEventListener("click", clearInputs);
 country.addEventListener("click", addCountryCode);
@@ -552,10 +550,15 @@ checkbox_finish.addEventListener('click', () => {
   console.log(terms.checked)
 
   if(terms.checked){
-    document.getElementById('order_complete_msg').classList.remove('noDisplay');
+    document.getElementById('order_complete_msg').classList.remove('hideElement');
+    document.getElementById('terms_msg').classList.add('hideElement');
+    document.getElementById('terms_accept').classList.add('hideElement');
+
 
   }else {
-		document.getElementById('terms_msg').classList.remove('noDisplay');
+		document.getElementById('terms_msg').classList.remove('hideElement');
+    
+  
   }
 
 

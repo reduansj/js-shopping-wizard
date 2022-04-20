@@ -1,9 +1,8 @@
 
 
-.order_complete_msg {
-    display: block;
-    
-    
+.order_complete_msg{
+    display:flex;
+
 }
 
 .section_finish{
@@ -13,6 +12,7 @@
     font-size: 35px;
     line-height: 54px;
     color: #222;
+    
 }
 
 .purchase_details{
@@ -40,6 +40,7 @@
 .purchase_details ul{
     grid-area: 2 / 2 / 3 / 3;
    list-style: none;
+   font-size: 30px;
 
 }
 .purchase_details_checkbox{
@@ -48,10 +49,6 @@
 
 }
 
-.purchase_order_details{
-    
-    
-}
 
 .purchase_order_list{
     list-style: none;
@@ -69,6 +66,27 @@
 
   .selected_product_img{
       height: 400px;
+      align-items: center;
+      justify-content: center;
+      
       
   }
 
+  .purchase_details_title{
+      font-size: 50px;
+  }
+  .finish_page_content{
+     display: grid;
+    grid-template-columns: 1fr 0.2fr;
+   
+    padding-left: 10px; 
+  }
+
+  .btnFinish{
+
+      display:flex;
+      align-items: flex-end;
+      font-size: 25px;
+
+
+  }

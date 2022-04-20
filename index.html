@@ -200,29 +200,35 @@
         <section id="finish-page" class="section_finish hideElement">
             
             <div class="finish_page_content">
-                <div class="order_complete_msg hideElement" id="order_complete_msg">
+                <!-- <div class="order_complete_msg  " id="order_complete_msg">
                     <h2>
                         Your order is complete!
                     </h2>
-                </div>
+                </div> -->
                 <div class='purchase_details'>
                     <h4 class="purchase_details_title">
                         Your Purchase
+                        <p class="order_complete_msg hideElement " id="order_complete_msg">
+                            Your order is complete!
+                        </p>
                     </h4>
+                   
+                 
+                   
 
                     <img src="./assets/Products/GM500-black/GM500-black-back.jpg" onError="this.src='./assets/Products/GM500-black/GM500-black-back.jpg'"class="selected_product_img" id="product_img"
                         
                         >
                     <ul>
-                        <li class="purchase_details_size" id='purchase_size'><label>Size:</label></li>
-                        <li class="purchase_details_color" id='purchase_color'><label>Color:</label></li>
+                        <li class="purchase_details_size" id='purchase_size'><label>Size: </label></li>
+                        <li class="purchase_details_color" id='purchase_color'><label>Color: </label></li>
                         <li class="purchase_details_time" id='purchase_time'>
                             <lable>ESTIMATE DELIVERY DATE</lable>
                         </li>
                     </ul>
-                    <div class="purchase_details_checkbox">
-                        <label class="form_label">
-                            <input type="checkbox" class="formulario_checkbox" id="accept_terms" name="terms" > I have read and i accept                            the
+                    <div class="purchase_details_checkbox" id="terms_accept">
+                        <label class="form_label" >
+                            <input type="checkbox" class="form_checkbox" id="accept_terms" name="terms" > I have read and i accept                            the
                             terms and conditions.                    
                             <div class="terms_msg hideElement" id="terms_msg">
                                 <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Please accept the terms and conditions.</p>
@@ -242,7 +248,9 @@
             </div>
             
             </div>
-            <button id="finishBtn">Finish</button>
+            <div class="btnFinish">
+            <button id="finishBtn" class="submitBtn" >Finish</button>
+            </div>
         </section>
         <footer class="footer">
             <div id="btnContainer" class="btnContainer hideElement">
