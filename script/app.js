@@ -100,31 +100,30 @@ const productData = {
 }
 
 const inputStatus = {
-
-  'product-page': {
+  "product-page": {
     color: true,
     size: false,
     price: true,
   },
   "profile-page": {
-    userName: true,
-    email: true,
-    password: true,
-    confirmPassword: true,
+    userName: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
   },
   "address-page": {
-    firstName: true,
-    lastName: true,
-    birthday: true,
-    address1: true,
-    postalCode: true,
-    phone: true,
+    firstName: false,
+    lastName: false,
+    birthday: false,
+    address1: false,
+    postalCode: false,
+    phone: false,
   },
   "shipping-page": {
-    type: true,
+    type: false,
   },
   "finish-page": {
-    termsConditions: true,
+    termsConditions: false,
   },
 };
 
