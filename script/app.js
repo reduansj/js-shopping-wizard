@@ -154,14 +154,16 @@ const shippingProp = {
 
 const purchaseSummary = {
   color: 'black',
-  size: null,
+  size: 78,
   price: 45.99,
   imgSrc: '',
-  shipping: null,
-  deliveryDate: null,
+  shipping: '',
+  deliveryDate: 'dious',
   giftMessage: null,
   giftSrc: null,
-};
+  shippingPrice: 23
+}
+
 
 const countryCodes = {
   Spain: "+34",
@@ -339,7 +341,8 @@ function updateInputs(e) {
   if (
     currentInput.id !== "confirmPassword" &&
     currentInput.id !== "address2" &&
-    currentInput !== "regularAddress"
+    currentInput.id !== "regularAddress" &&
+    currentInput.type !== "checkbox"
   ) {
     const isValid = new RegExp(checkInputexpression[currentInput.id]).test(
       currentInput.value
@@ -402,7 +405,7 @@ function addCountryCode() {
 function clearInputs() {
   const formId = getActiveSectionId();
   const formInputs = document.querySelectorAll(`#${formId} input`);
-
+  outputDeliveryDate.innerHTML = "";
   formInputs.forEach((input) => {
     if (input.type !== "checkbox" && input.type !== "radio") {
       input.classList.remove("correctInput");
@@ -475,10 +478,6 @@ function getFormData() {
   if (formId === "shipping-page") {
     return;
   }
-  if (formId === "address-page") {
-    console.log(countryCodes[country.value]);
-  }
-
   formInputs.forEach((input) => {
     if (input.id !== "regularAddress") {
       saveInputData[formId][input.id] = input.value;
@@ -488,7 +487,6 @@ function getFormData() {
       }
     }
   });
-  console.log(saveInputData[formId]);
 }
 
 //Timer for end of purchase
@@ -498,21 +496,69 @@ const timer = (duration = 5, every = 60) => {
   end.setMinutes(end.getMinutes() + duration);
 
   const intervalId = setInterval(() => {
+    //Stops the timer purchase correct
     const activeSectionId = getActiveSectionId();
     if (activeSectionId === "finish-page") {
       clearInterval(intervalId);
     }
+    //
     const now = new Date();
     const timeLeft = end.getMinutes() - now.getMinutes();
     timeLeftMessg.innerHTML = `Limit time for the purchase is ${timeLeft} minutes`;
+    console.log(timeLeft);
     //Show time left
     showTimeLeft.classList.toggle("hideElement");
+
     setTimeout(() => {
       showTimeLeft.classList.toggle("hideElement");
     }, 5000);
+
     if (now > end) {
       clearInterval(intervalId);
       location.reload();
     }
   }, every * 1000);
 };
+
+
+
+//Finish page
+const purchase_size = document.getElementById('purchase_size');
+const purchase_img = document.getElementById('product_img');
+const purchase_color = document.getElementById('purchase_color');
+const purchase_time = document.getElementById('purchase_time');
+const order_shoe_price = document.getElementById('purchase_order_shoe');
+const order_shipping_type =document.getElementById('purchase_order_shipping');
+const order_total_price =document.getElementById('purchase_order_total');
+
+
+function finishPageDisplay(){
+  
+  purchase_img.src = purchaseSummary.imgSrc;
+  purchase_size.textContent += purchaseSummary.size;
+  purchase_color.textContent += purchaseSummary.color;
+  purchase_time.textContent += purchaseSummary.deliveryDate;
+  order_shoe_price.textContent += purchaseSummary.price;
+  order_shipping_type.textContent += purchaseSummary.shipping;
+  order_total_price.textContent += eval(purchaseSummary.price + purchaseSummary.shippingPrice);
+
+}
+finishPageDisplay()
+
+const checkbox_finish = document.getElementById('finishBtn');
+const terms = document.getElementById('accept_terms');
+
+checkbox_finish.addEventListener('click', () => {
+  console.log(terms.checked)
+
+  if(terms.checked){
+    document.getElementById('order_complete_msg').classList.remove('noDisplay');
+
+  }else {
+		document.getElementById('terms_msg').classList.remove('noDisplay');
+  }
+
+
+})
+
+

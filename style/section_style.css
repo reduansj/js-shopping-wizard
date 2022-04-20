@@ -16,11 +16,8 @@ section{
     display:none !important;
 }
 
-.shipping-page{
-    min-width: 1216px;
+.shipping-page {
+    width: 30%;
     flex-direction: column;
-}
-
-.header__shipping{
-    width: 100%;
+    justify-content: center;
 }

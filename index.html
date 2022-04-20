@@ -7,15 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Balance GM500</title>
     <link rel="stylesheet" href="./style/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src='./script/app.js' type='text/javascript'></script>
 </head>
 
 <body>
     <main id="main" class="main-container">
         <header id="header">
-            <nav id ="progress-bar" class="stepProgressBar hideElement">
+            <nav id="progress-bar" class="stepProgressBar hideElement">
                 <div class="step">
                     <p class="step-text">Profile</p>
                     <div class="bullet"></div>
@@ -52,6 +51,7 @@
                         class="miniatureProductImage">
                     <img src="./assets/Products/GM500-black/GM500-black-zoom.jpg" alt="miniatureZoom"
                         class="miniatureProductImage">
+                    <i class="fa-solid fa-chevron-down arrow-down"></i>
                 </div>
                 
                 <div class="imageMoveZoom">
@@ -135,7 +135,7 @@
                     </form>
         </section>
         <section id="address-page" class=" addresssection form-pages hideElement">
-            <h2>ADDRESS</h2>
+            <h2>Address</h2>
             <form action="" id="address" class="adress-form">
                     <label for="firstName">First name:</label>
                     <input type="text" id="firstName" class="input">
@@ -170,49 +170,83 @@
                     </form>
         </section>
         <section id="shipping-page" class="shipping-page section hideElement">
-            
-                <header class="header__shipping">
-                    <h2>Shipping</h2>
-                </header>
-            
-                <h3>Shipping type</h3>
-                <form action="" id="shipping" class="form__shipping">
-                    <label for="option__free-shipping"><input type="radio" id="option__free-shipping" name="shipping-type" value="free">
-                        Free
-                        (72h)</label>
-                    <label for="option__extra-shipping"><input type="radio" id="option__extra-shipping" name="shipping-type" value="extra">
-                        Extra (48h) <b>4.99€</b></label>
-                    <label for="option_premium_shipping"><input type="radio" id="option__premium-shipping" name="shipping-type"
-                            value="premium"> Premium (24h) <b>9.99€</b></label>
-                </form>
-        
-                <article>
+            <h2>Shipping</h2><br>
+            <h3>Shipping type</h3><br>
+                    <form action="" id="shipping" class="form__shipping">
+                        <label for="option__free-shipping"><input type="radio" id="option__free-shipping" name="shipping-type" value="free">
+                            Free
+                            (72h)</label>
+                        <label for="option__extra-shipping"><input type="radio" id="option__extra-shipping" name="shipping-type" value="extra">
+                            Extra (48h) <b>4.99€</b></label>
+                        <label for="option_premium_shipping"><input type="radio" id="option__premium-shipping" name="shipping-type"
+                                value="premium"> Premium (24h) <b>9.99€</b></label>
+                    </form><br>
+
                     <div class="container__delivery-date" id="container__delivery-date">
                         <h3>Your order will arrive:</h3>
-                        <h4>ESTIMATE DELIVERY DATE:</h4>
+                        <h4>ESTIMATE DELIVERY DATE:</h4><br>
                         <p id="output__delivery-date"></p>
                     </div>
-                </article>
-                <article>
-                    <input type="checkbox" name="gift-check">
-                    <label for="gift-check">Is it a gift?</label>
+        <label for="gift-check"><input type="checkbox" name="gift-check"> Is it a gift?</label>
                     <div id="gift-information__container" class="hideElement">
                         <p>Gift message</p>
                         <input id="input__gift-message" type="textarea" disabled>
                         <p>Gift wrapper image</p>
                         <input type="file" id="input__gift-image" accept="image/png,image/jpeg">
                         <label for="input__gift-image">
-                            <i class ="material-icons">add_photo_alternate</i>
+                            <i class="material-icons">add_photo_alternate</i>
                     </div>
-                </article>
-            </article>
         </section>
-        <section id="finish-page" class="section hideElement">
-            <button id="finishBtn">Finish</button><!---->
+        <section id="finish-page" class="section_finish hideElement">
+            
+            <div class="finish_page_content">
+                <div class="order_complete_msg hideElement" id="order_complete_msg">
+                    <h2>
+                        Your order is complete!
+                    </h2>
+                </div>
+                <div class='purchase_details'>
+                    <h4 class="purchase_details_title">
+                        Your Purchase
+                    </h4>
+
+                    <img src="./assets/Products/GM500-black/GM500-black-back.jpg" onError="this.src='./assets/Products/GM500-black/GM500-black-back.jpg'"class="selected_product_img" id="product_img"
+                        
+                        >
+                    <ul>
+                        <li class="purchase_details_size" id='purchase_size'><label>Size:</label></li>
+                        <li class="purchase_details_color" id='purchase_color'><label>Color:</label></li>
+                        <li class="purchase_details_time" id='purchase_time'>
+                            <lable>ESTIMATE DELIVERY DATE</lable>
+                        </li>
+                    </ul>
+                    <div class="purchase_details_checkbox">
+                        <label class="form_label">
+                            <input type="checkbox" class="formulario_checkbox" id="accept_terms" name="terms" > I have read and i accept                            the
+                            terms and conditions.                    
+                            <div class="terms_msg hideElement" id="terms_msg">
+                                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Please accept the terms and conditions.</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="purchase_order_details">
+                    <ul class='purchase_order_list'> Your order:
+                        <li class='purchase_order_shoe' id="purchase_order_shoe"><label>Shoe: </label></li>
+                        <li class="purchase_order_shipping" id="purchase_order_shipping"></li>
+                        <li class="purchase_order_total" id="purchase_order_total"><label>Total: </label></li>
+                    </ul>
+    
+                </div>
+    
+            </div>
+            
+            </div>
+            <button id="finishBtn">Finish</button>
         </section>
         <footer class="footer">
             <div id="btnContainer" class="btnContainer hideElement">
-                    <button id="clearForm" class="submitBtn">Clear Form</button>
+                    <button id="clearForm" class="submitBtn">Clear</button>
                     <button id="next" class="submitBtn">Next</button>
             </div>
         </footer>

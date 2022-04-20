@@ -22,6 +22,10 @@
 
 @import './progress_bar.css';
 
+/*Finish Section*/
+
+@import './finish_page.css';
+
 body,
 * {
     margin: 0;
