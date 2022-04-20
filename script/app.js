@@ -495,16 +495,18 @@ function getFormData() {
 }
 
 //Timer for end of purchase
-const timer = (duration = 1, every = 10) => {
+const timer = (duration = 5, every = 60) => {
   const showTimeLeft = document.getElementById("timeRemainder");
   const end = new Date();
   end.setMinutes(end.getMinutes() + duration);
 
   const intervalId = setInterval(() => {
+    //Stops the timer purchase correct
     const activeSectionId = getActiveSectionId();
     if (activeSectionId === "finish-page") {
       clearInterval(intervalId);
     }
+    //
     const now = new Date();
     const timeLeft = end.getMinutes() - now.getMinutes();
     timeLeftMessg.innerHTML = `Limit time for the purchase is ${timeLeft} minutes`;
@@ -522,6 +524,7 @@ const timer = (duration = 1, every = 10) => {
     }
   }, every * 1000);
 };
+
 
 
 //Finish page
