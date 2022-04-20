@@ -421,20 +421,20 @@ function clearInputs() {
 function nextSection() {
   const activeSection = document.querySelector("[active-section]");
 
-  if (
-    Object.values(inputStatus[activeSection.id]).every(
-      (input) => input === true
-    )
-  ) {
-    bullets[currentStep - 1].classList.add("completed");
-    if (activeSection.id == "shipping-page") {
-      document.getElementById("btnContainer").classList.add("hideElement");
-    } else if (activeSection.id === "product-page") {
-      btnContainer.classList.toggle("hideElement");
-      progressBar.classList.toggle("hideElement");
-    }
-    currentStep += 1;
+  // if (
+  //   Object.values(inputStatus[activeSection.id]).every(
+  //     (input) => input === true
+  //   )
+  // ) {
+  // }
+  bullets[currentStep - 1].classList.add("completed");
+  if (activeSection.id == "shipping-page") {
+    document.getElementById("btnContainer").classList.add("hideElement");
+  } else if (activeSection.id === "product-page") {
+    btnContainer.classList.toggle("hideElement");
+    progressBar.classList.toggle("hideElement");
   }
+  currentStep += 1;
   activeSection.classList.toggle("hideElement");
   activeSection.nextElementSibling.classList.toggle("hideElement");
   activeSection.removeAttribute("active-section");

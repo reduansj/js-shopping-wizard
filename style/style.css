@@ -216,17 +216,20 @@ box-shadow: 3px 0px 30px rgba(163,163,163, 1);
 }
 
 .timeRemainder {
-    /* position: absolute; */
-    background-color: #478022;
-    width: 20%;
-    top: 10px;
-    right: 10rem;
-    left: 10rem;
-    border-radius: 15px;
-    color: black;
-    font-size: 1.3rem;
-    text-align: center;
-    /* overflow: auto; */
+background-color: #bbbbbb85;
+width: 10rem;
+height:5rem;
+top: 7rem;
+right: 1rem;
+border-radius: 15px;
+color: black;
+font-size: 1.3rem;
+font-weight: bold;
+text-align: center;
+position: absolute;
+}
 
+.btnContainer {
+    display: flex;
 }
 
