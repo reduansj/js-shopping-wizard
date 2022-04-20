@@ -478,10 +478,6 @@ function getFormData() {
   if (formId === "shipping-page") {
     return;
   }
-  if (formId === "address-page") {
-    console.log(countryCodes[country.value]);
-  }
-
   formInputs.forEach((input) => {
     if (input.id !== "regularAddress") {
       saveInputData[formId][input.id] = input.value;
@@ -491,7 +487,6 @@ function getFormData() {
       }
     }
   });
-  console.log(saveInputData[formId]);
 }
 
 //Timer for end of purchase
