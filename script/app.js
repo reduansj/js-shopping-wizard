@@ -28,6 +28,7 @@ let [miniatureActiveImage, colorActiveImage] =
 const timeLeftMessg = document.getElementById("timeLeft");
 const modal = document.getElementById("myModal");
 const imageZoom = document.getElementById("image-zoom")
+const imageMoveZoom = document.getElementById("mainProductImage");
 
 //Product Data Information
 const productData = {
@@ -424,27 +425,26 @@ function clearInputs() {
 function nextSection() {
   const activeSection = document.querySelector("[active-section]");
 
-  // if (
-  //   Object.values(inputStatus[activeSection.id]).every(
-  //     (input) => input === true
-  //   )
-  // ) {
-  // }
-  bullets[currentStep - 1].classList.add("completed");
-  if (activeSection.id == "shipping-page") {
-    document.getElementById("btnContainer").classList.add("hideElement");
-  } else if (activeSection.id === "product-page") {
-    btnContainer.classList.toggle("hideElement");
-    progressBar.classList.toggle("hideElement");
+  if (Object.values(inputStatus[activeSection.id]).every((input) => input === true)
+  ) {
+    
+    if (activeSection.id == "shipping-page") {
+      document.getElementById("btnContainer").classList.add("hideElement");
+      bullets[currentStep - 1].classList.add("completed");
+      currentStep += 1;
+    } else if (activeSection.id === "product-page") {
+      btnContainer.classList.toggle("hideElement");
+      progressBar.classList.toggle("hideElement");
+    } else {
+      bullets[currentStep - 1].classList.add("completed");
+      currentStep += 1;
+    }
+    activeSection.classList.toggle("hideElement");
+    activeSection.nextElementSibling.classList.toggle("hideElement");
+    activeSection.removeAttribute("active-section");
+    activeSection.nextElementSibling.setAttribute("active-section", "");
   }
-  currentStep += 1;
-  activeSection.classList.toggle("hideElement");
-  activeSection.nextElementSibling.classList.toggle("hideElement");
-  activeSection.removeAttribute("active-section");
-  activeSection.nextElementSibling.setAttribute("active-section", "");
 }
-
-const imageMoveZoom = document.getElementById("mainProductImage");
 
 //Event on mouse move
 imageMoveZoom.addEventListener("mousemove", (e) => {
