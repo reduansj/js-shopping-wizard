@@ -83,6 +83,7 @@
   width: 75%;
   margin-left: 20px;
   display: flex;
+  align-self: center;
 }
 
 /*Scroll with arrows*/

@@ -1,7 +1,5 @@
 //global variable definition
 let mainProductImage = document.getElementById('mainProductImage')
-// let miniatureActiveImage = document.querySelectorAll('[default]')[0] //Select element by existing attribute
-// let colorActiveImage = document.querySelectorAll('[default]')[1]
 const productViewMiniaturesContainer = document.getElementById('productViewMiniaturesContainer')
 const productPrice = document.getElementById('productPrice')
 const productDescription = document.getElementById("productDescription")
@@ -22,32 +20,14 @@ const giftInformationContainer = document.getElementById('gift-information__cont
 const MAX_STEPS = 4;
 let currentStep =1;
 const progressBar = document.getElementById('progress-bar')
-//Progres bar
-// const previousBtn = document.getElementById('previousBtn')
 const bullets = [...document.querySelectorAll('.bullet')]
 const finishBtn = document.getElementById('finishBtn')
 const btnContainer = document.getElementById('btnContainer')
-// let mainProductImage = document.getElementById("mainProductImage");
 let [miniatureActiveImage, colorActiveImage] =
   document.querySelectorAll("[default]");
-// const productViewMiniaturesContainer = document.getElementById(
-//   "productViewMiniaturesContainer"
-// );
-// const productPrice = document.getElementById("productPrice");
-// const productDescription = document.getElementById("productDescription");
-// const nextSectionBtn = document.getElementById("next");
-// const clearInput = document.getElementById("clearForm");
-// const formInputs = document.querySelectorAll("#main input");
-// const buyBtn = document.getElementById("productBuy");
-// const productSizeInput = document.querySelector("select#productSize");
-// const shippingInput = document.getElementById("shipping");
-// const actualDate = new Date();
-// const outputDeliveryDate = document.getElementById("output__delivery-date");
-// const checkboxGiftMessage = document.querySelector("input[name='gift-check']");
-// let inputGiftMessage = document.getElementById("input__gift-message");
-// const country = document.getElementById("country");
-// const phone = document.getElementById("phone");
 const timeLeftMessg = document.getElementById("timeLeft");
+const modal = document.getElementById("myModal");
+const imageZoom = document.getElementById("image-zoom")
 
 //Product Data Information
 const productData = {
@@ -218,9 +198,8 @@ document.getElementById("productColorSelectorContainer").addEventListener('mouse
   }
 })
 
-document.getElementById("input__gift-image").addEventListener('input', e => console.log(e.target.value))
-
-//Declare events
+finishBtn.addEventListener('click', nextSection);
+// document.getElementById("input__gift-image").addEventListener('input', e => console.log(e.target.value))
 clearInput.addEventListener("click", clearInputs);
 country.addEventListener("click", addCountryCode);
 productSizeInput.addEventListener("change", (e) => {
@@ -242,7 +221,7 @@ formInputs.forEach((input) => {
   });
 });
 buyBtn.addEventListener("click", (e) => {
-  //timer();
+  timer();
   nextSection(e);
 });
 nextSectionBtn.addEventListener("click", (e) => {
@@ -252,8 +231,7 @@ nextSectionBtn.addEventListener("click", (e) => {
 
 //Zoom Image
 
-const modal = document.getElementById("myModal");
-const imageZoom = document.getElementById("image-zoom")
+
 mainProductImage.addEventListener('click', zoomImage)
 
 function zoomImage(){
@@ -317,7 +295,7 @@ function colorProductImageHover(e) {
 function colorProductImageMouseOut(e){
   if(e.target !== colorActiveImage){
     e.target.style.border = 'none';
-    productColorText.innerHTML = `Color: <b>black</b>`
+    productColorText.innerHTML = `Color: <b>${purchaseSummary.color}</b>`
   }
 }
 
@@ -353,7 +331,6 @@ const checkInputexpression = {
 function updateInputs(e) {
   const currentInput = e.target;
   const activeSectionId = getActiveSectionId();
-  console.log(activeSectionId)
   const isShippingSection = activeSectionId === "shipping-page";
 
   if (isShippingSection) {
@@ -447,7 +424,7 @@ function nextSection() {
     } else if (activeSection.id === 'product-page') {
       btnContainer.classList.toggle('hideElement')
       progressBar.classList.toggle("hideElement")
-    } 
+    }
     currentStep += 1;
     }
     activeSection.classList.toggle('hideElement');
@@ -479,44 +456,6 @@ imageMoveZoom.addEventListener("mousemove", (e) => {
   // We add the '%' units to make sure the string looks exactly like the css declaration it becomes.
 
 });
-
-// previousBtn.addEventListener('click',  ()  =>  {
-// 	bullets[currentStep  -  2].classList.remove('completed');
-// 	nextSectionBtn.disabled  =  false;
-// 	finishBtn.disabled  =  true;
-//   console.log(currentStep)
-// 	if  (currentStep  ===  2)  {
-//     previousBtn.disabled  =  true;
-// 	}
-//   currentStep  -=  1;
-//   const activeSection = document.querySelector('[activeSection]');
-//   activeSection.classList.toggle('hideElement');
-//   activeSection.previousElementSibling.classList.toggle('hideElement');
-//   activeSection.removeAttribute('activeSection')
-//   activeSection.previousElementSibling.setAttribute('activeSection', '')
-// });
-
-// //refrescar pag cuando le damos a finish
-console.log(finishBtn)
-finishBtn.addEventListener('click', nextSection);
-
-// function nextSection() {
-//   const activeSection = document.querySelector("[active-section]");
-//   if (
-//     Object.values(inputStatus[activeSection.id]).every(
-//       (input) => input === true
-//     )
-//   ) {
-//     activeSection.classList.toggle("hideElement");
-//     activeSection.nextElementSibling.classList.toggle("hideElement");
-//     activeSection.removeAttribute("active-section");
-//     activeSection.nextElementSibling.setAttribute("active-section", "");
-//   }
-//   document.getElementById("btnContainer").classList.remove("hideElement");
-//   if (activeSection.id == "shipping-page") {
-//     document.getElementById("btnContainer").classList.add("hideElement");
-//   }
-// }
 
 //Get active section id
 const getActiveSectionId = () => {
